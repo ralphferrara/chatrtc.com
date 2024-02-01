@@ -1,0 +1,256 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Container
+//|| CSS:: User List Item
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Main
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .topSide {
+            display           : grid;
+            align-items       : center;
+            grid-template-columns: 50px 2fr 1.5fr 60px;
+            margin            : 4px 10px 0;
+            background        : rgba(0,0,0,0.03);
+            border-radius     : 10px;
+            cursor            : pointer;
+            padding           : 3px 5px;
+      }
+      .userListItem.open .topSide {
+            border-radius     : 10px 10px 0 0;
+      }
+
+      .userListItem .topSide div {
+            display           : flex;
+            align-items       : middle;
+            justify-content   : middle;
+            overflow          : hidden;
+            height            : 100%;
+            padding           : 3px 0;
+            border-radius     : 0;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Image
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .topSide .userImage img {
+            width             : 40px;
+            height            : 40px;
+            border-radius     : 50%;
+      }      
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Info
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userInfo { 
+            align-items       : flex-start;
+            font-size         : 0.8em;
+            width             : 100%;
+      }
+
+      .userInfo ul {
+            padding-top       : 2px;
+            max-width         : 100%;
+            padding           : 0 10px 0 0;
+      }
+
+      .userInfo ul li {
+            display           : flex;
+            text-align        : left;
+            vertical-align    : top;
+            max-height        : 1.2em;
+            line-height       : 1.2em;
+            overflow-x        : hidden;
+            padding           : 3px 0 0 0;
+      }
+
+      .userInfo .username { 
+            font-size         : 1.1em;
+            font-weight       : bold;
+            color             : #333;
+            text-decoration   : none;
+            overflow          : hidden;
+            margin-right      : 10px;
+            width             : 100%;
+      }
+
+      .userInfo .location { 
+            font-size         : 1.0em;
+            font-weight       : bold;
+            color             : rgba(100,100,100,0.4);
+            text-decoration   : none;
+            width             : 100%;
+            max-height        : 1.5em;
+            overflow          : hidden;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Icons
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem div.userIcons { 
+            display                 : grid;
+            text-align              : center;
+            grid-template-columns   : 2fr 1fr 1fr 1fr 1fr; 
+      }
+            
+      .userListItem div.userIcons i { 
+            display                 : flex;
+            justify-content         : center;
+            align-items             : center;
+            font-size               : 0.9em;
+            color                   : #999;  
+            margin                  : 6px 0;    
+            border-radius           : 10px;
+      }
+
+      .userListItem div.userIcons i.age { 
+            font-size               : 0.9em;
+            font-weight             : bold;
+            color                   : #999;
+            background              : rgba(0,0,0,0.01);  
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Icons
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userButtons {
+            display                 : flex;
+            padding                 : 5px 5px;
+            justify-content         : center;
+            align-items             : center;
+            font-size               : 1.2em;
+            color                   : #999;      
+      }
+            
+      .userButtons button {
+            width                   : 100%;
+            height                  : 100%;
+            border                  : none;
+            background              : transparent;
+            cursor                  : pointer;
+      }
+
+      .userButtons button.viewCamera {
+            background-color        : var(--color-hover-bg);
+            color                   : white;
+            padding                 : 0px 15px;
+            border                  : none;
+            border-radius           : 5px;
+            cursor                  : pointer;
+            margin                  : 8px;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Main
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .bottomSide {
+            display                 : none;
+            align-items             : center;
+            grid-template-columns   : repeat(6, 1fr);
+            margin                  : 0 10px;
+            background              : rgba(0,0,0,0.03s);
+            border-radius           : 0 0 10px 10px;
+            cursor                  : pointer;
+            padding                 : 0;
+      }
+
+      .userListItem.open .bottomSide {
+            display                 : grid;
+      }
+      
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Classes - Activity
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .userIcons i .active,
+      .userListItem .userIcons i .idle,
+      .userListItem .userIcons i .away {  
+            display                : none;
+      }
+      .userListItem .userIcons i.active .active{
+            display                : block;
+            color                  : green;
+      }
+      .userListItem .userIcons i.idle .idle{
+            display                : block;
+            color                  : gray;
+      }
+      .userListItem .userIcons i.away .away{
+            display                 : block;
+            color                   : darkblue;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Classes - Gender
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .userIcons i.M {
+            color                   : #00F;
+      }
+      .userListItem .userIcons i.F {
+            color                   : #F0F;
+      }
+      .userListItem .userIcons i.T {
+            color                   : purple;
+      }
+      .userListItem .userIcons i.O {
+            color                   : red;
+      }
+      .userListItem .userIcons i.NA {
+            color                   : transparent;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Classes - Certified
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem .userIcons i.notCertified {
+            color                   : transparent;
+      }
+      .userListItem .userIcons i.certified {
+            color                  : gold;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Panel Closed
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      main.closed .userIcons, 
+      main.closed .userButtons, 
+      main.closed .userInfo {  
+            display           : none;
+      }
+
+      main.closed .userListItem .topSide {
+            grid-template-columns: 100%;
+            padding           : 2px;
+      }
+      main.closed .userListItem .userImage {
+            justify-content  : center;
+            border-radius    : 0;
+            padding          : 4px;
+      }
+
+      main.closed .userListItem .userImage img {
+            width            : 60px;
+            height           : 40px;
+            border-radius    : 0;
+      }
+
+      main.closed .userListItem .topSide:hover {
+            background        : var(--color-hover-bg);
+      }
+
+      main.closed .userListItem .topSide {
+            border-radius    : 10px;
+      }
+      
+      main.closed .userListItem .bottomSide {
+            display           : none;
+      }

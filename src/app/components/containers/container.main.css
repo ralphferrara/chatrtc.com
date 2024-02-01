@@ -1,0 +1,41 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Container
+//|| CSS:: Main Container
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Main
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      main * {
+            box-sizing              : border-box;
+            -moz-box-sizing         : border-box;
+            -webkit-box-sizing      : border-box;
+      }
+
+
+      main div.main {
+            position         : fixed;
+            top              : 0;   
+            left             : 0;
+            bottom           : var(--height-toolbar);
+            width            : var(--width-main);
+            background       : var(--color-bg);
+      }
+
+      main div.users {
+            position         : fixed;
+            top              : 0;   
+            bottom           : var(--height-toolbar);
+            right            : 0;
+            width            : var(--width-users);
+            overflow-y       : auto;
+      }
+
+      main.closed div.main {
+            width            : var(--width-main-closed);
+      }
+
+      main.closed div.users {
+            width            : var(--width-users-closed);
+      }

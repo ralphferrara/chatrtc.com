@@ -1,0 +1,14 @@
+/* ButtonColor.css */
+div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+  
+  p span {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      background-color: currentColor; /* Sets the background to the current font color */
+      color: transparent; /* Hide the text color */
+      border-radius: 4px;
+  }

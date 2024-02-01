@@ -1,0 +1,115 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Toolbar Chat
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.toolbarSendBox {
+            position                : fixed;
+            bottom                  : 0;
+            left                    : 0;
+            width                   : var(--width-main);
+            height                  : var(--height-toolbar);
+            background              : #fff;
+            padding                 : 0;
+            margin                  : 0;         
+      }
+
+      main.closed div.toolbarSendBox {
+            width                   : var(--width-main-closed);
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| SentTo Overlay 
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.toolbarSendBox div.sendTo {
+            position                : fixed;
+            display                 : none;
+            height                  : auto;
+            font-size               : 1;
+            background              : var(--color-highlight);
+            bottom                  : calc(var(--height-toolbar) + 20px);
+            right                   : calc(var(--width-users)  + 100px); 
+            left                    : 100px;
+            color                   : #FFF;
+            grid-template-columns   : 50px auto 50px;            
+            gap                     : 0;
+            padding                 : 10px 10px;
+            align-items             : center;
+            border-radius           : 20px;
+            gap                     : 30px;            
+      }
+
+      div.toolbarSendBox div.sendTo i {
+            vertical-align          : middle;
+            text-align              : center;
+            margin                  : 0;
+            color                   : #FFF;
+            font-size               : 150%;            
+      }
+
+      div.toolbarSendBox div.sendTo span {
+            font-size               : 1.0em;
+            vertical-align          : middle;
+            text-align              : left;
+      }
+
+      div.toolbarSendBox div.sendTo span b {
+            font-weight             : 700;
+      }
+
+      div.toolbarSendBox div.sendTo button.close {
+            text-align              : center;
+            vertical-align          : middle;
+            cursor                  : pointer;
+            border                  : 0;
+            background              : transparent;
+            color                   : #FFF;
+            font-size               : 150%;
+      }
+
+      div.toolbarSendBox.whisper div.sendTo.whisper {
+            display                 : grid;
+            background              : var(--color-whisper-bg);
+      }
+
+      div.toolbarSendBox.direct div.sendTo.direct {
+            display                 : grid;
+            background              : var(--color-direct-bg);
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| SendBox
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+      
+      div.toolbarSendText {
+            display                 : grid;
+            grid-template-columns   : 80px 80px auto 80px 100px; /* Start simple */
+            border                  : 0;
+            padding                 : 0;
+            margin                  : 0;
+      }
+
+      div.toolbarSendText textarea {
+            border                  : 0;
+            font-size               : 1.0em;
+            resize                  : none;
+            height                  : var(--height-toolbar);
+            padding                 : 10px 20px;
+            vertical-align          : middle;
+            border-left             : 1px solid var(--color-border-light);
+      }
+
+      div.toolbarSendText textarea::-webkit-input-placeholder {
+            color                   : #CCC;
+            padding                 : 20px 0;
+      }
+
+
+      div.toolbarSendText textarea:focus {
+            outline                 : none;
+      }

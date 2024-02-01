@@ -1,0 +1,136 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Modal Settings
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.modal.overlay { 
+            position                : fixed;
+            top                     : 0;
+            left                    : 0;
+            right                   : 0;
+            bottom                  : 0;
+            background              : rgba(0, 0, 0, 0.5);
+            display                 : flex;
+            justify-content         : center;
+            align-items             : center;
+            z-index                 : 100;
+      }
+
+      div.modal.overlay div.modal {
+            background              : #FFF;
+            border                  : 2px solid var(--color-border-heavy);
+            border-radius           : 10px;
+            padding                 : 20px;
+            width                   : 80%;
+            height                  : 80%;
+            box-shadow              : 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      div.modal.overlay div.modal h1 {
+            position                : relative;
+            font-size               : 1.5em;
+            margin                  : 0;
+            padding                 : 0;
+            color                   : var(--color-text);
+            display                 : block;
+            padding                 : 10px 20px ;
+            margin-bottom           : 20px;
+      }
+
+      div.modal.overlay div.modal h1 i {
+            position                : absolute;
+            right                   : 0;
+            top                     : 0;
+            padding                 : 0 10px;
+            font-size               : 1.5em;
+      }
+      
+      div.modal.overlay div.modal div.areaMain{
+            grid-template-columns   : 30% 70%;
+            display                 : grid;
+            height                  : 85%;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Menu Settings
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      ul.menuSettings {
+            display                 : flex;
+            flex-direction           : column;            
+            list-style              : none;
+            padding                 : 0;
+            margin                  : 0;
+            height                  : 100%;
+            width                   : 100%;
+            overflow                : auto;            
+      }
+
+      ul.menuSettings li {
+            display                 : block;
+            margin                  : 0 20px;
+            padding                 : 22px 10px ;
+            color                   : var(--color-text);            
+            border-bottom           : 1px solid var(--color-border-light);
+            cursor                  : pointer;
+      }
+
+      ul.menuSettings li i {
+            margin-right            : 10px;
+            display                 : inline-block;
+            border-radius           : 50%;
+            width                   : 20px;     
+            color                   : var(--color-text-light);
+      }
+
+      ul.menuSettings li:hover {
+            background              : var(--color-hover-bg);
+            color                   : #FFF;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Area Settings
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.areaSettings {
+            display                 : block;
+            height                  : 100%;
+            overflow                : auto;
+            border                  : 1px solid var(--color-border-light);
+      }
+
+      div.areaSettings h2 { 
+            display                 : block;
+            padding                 : 20px 20px;
+            margin                  : 0;
+            font-size               : 1.2em;
+      }
+      
+      div.areaSettings h2 i { 
+            margin-right            : 10px;
+            display                 : inline-block;
+            font-size               : 1em;
+      }
+      div.areaSettings .subsection { 
+            display                 : block;
+            margin                  : 0;
+            padding                 : 0 0;
+            min-height              : 90%;
+            border-bottom           : 1px solid var(--color-border-light);
+            background              : #F5F5F5;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Setting Group
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.settingGroup {
+            display                 : block;
+            margin                  : 0;
+            padding                 : 20px 20px;
+            border-bottom           : 1px solid #CCC;
+      }

@@ -1,0 +1,43 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Toolbar Menu
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.toolbarMenu {
+            position                : fixed;
+            bottom                  : 0;
+            right                   : 0;
+            width                   : var(--width-users);
+            height                  : var(--height-toolbar);
+            background              : #fff;
+            padding                 : 0;
+            margin                  : 0;         
+            background              : var(--color-bg); 
+            display                 : grid;
+            grid-template-columns   : repeat(6, 1fr);
+      }
+
+      main.closed div.toolbarMenu {
+            grid-template-columns   : repeat(1, 1fr);
+            width                   : var(--width-users-closed);
+      }
+
+      main.closed div.toolbarMenu button.icon {
+            display                 : none;
+      }
+
+      main div.toolbarMenu button.icon.toggle {
+            display                 : none;
+      }
+
+      main.closed div.toolbarMenu button.icon.toggle {
+            display                 : block;
+      }
+
+      div.toolbarMenu button.icon.selected {
+            color                   : var(--color-inactive-bg);
+      }

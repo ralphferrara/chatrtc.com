@@ -1,0 +1,42 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Components
+//|| CSS:: Button Icon
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Button Icon
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      button.icon {      
+            background              : transparent;
+            border                  : 0;
+            color                   : var(--color-button-icon);
+            cursor                  : pointer;
+            height                  : var(--height-toolbar);
+            font-size               : 120%;
+      }
+
+      button.icon.short:hover,
+      button.icon:hover { 
+            background              : var(--color-hover-bg);
+            color                   : var(--color-hover-text);
+      }
+
+      button.icon.active {      
+            background              : var(--color-active-bg);
+            color                   : var(--color-active-text);
+      }
+
+      button.icon.inactive {      
+            background              : var(--color-inactive-bg);
+            color                   : var(--color-inactive-text);
+      }
+
+      button.icon.short {      
+            background              : transparent;
+            border                  : 0;
+            color                   : var(--color-button-icon);
+            cursor                  : pointer;
+            height                  : 40px;
+            font-size               : 100%;
+      }
