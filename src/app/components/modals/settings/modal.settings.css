@@ -79,6 +79,14 @@
             cursor                  : pointer;
       }
 
+      ul.menuSettings li.active {
+            background-color        : var(--color-hover-bg);
+            color                   : white;
+      }      
+      ul.menuSettings li.active i {
+            color                   : white;
+      }
+
       ul.menuSettings li i {
             margin-right            : 10px;
             display                 : inline-block;
@@ -118,10 +126,10 @@
       div.areaSettings .subsection { 
             display                 : block;
             margin                  : 0;
-            padding                 : 0 0;
-            min-height              : 90%;
+            padding                 : 0 0 50px 0;
             border-bottom           : 1px solid var(--color-border-light);
             background              : #F5F5F5;
+            min-height              : 90%;
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||

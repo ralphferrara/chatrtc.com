@@ -24,3 +24,16 @@
             soundOnMessage          : string;
       }
       
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Setting Definition
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+      
+      export interface SettingsListItemInt {
+            section         : string;
+            name            : string;
+            type            : string;
+            default         : number | string;
+            header          : string;
+            description     : string;
+            example         : string;
+      };      

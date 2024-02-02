@@ -24,7 +24,7 @@
       const ButtonToggle: React.FC<ButtonToggleProps> = ({ id, onChange }) => {
             return (
                   <>
-                        <input className="buttonToggle" id="test" onChange={ onChange } type="checkbox" />
+                        <input className="buttonToggle" id={ id } onChange={ onChange } type="checkbox" />
                         <label className="buttonToggleLabel" htmlFor={ id }><span className="buttonToggleButton" /></label>
                   </>
             );

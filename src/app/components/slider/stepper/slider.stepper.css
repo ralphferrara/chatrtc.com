@@ -1,82 +1,58 @@
-/* StepperSlider.css */
-.stepper-slider {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      width       : 300px;
-    }
-    
-    .stepper-button {
-      background-color: #f0f0f5;
-      color: #007aff;
-      border: 1px solid #d1d1d6;
-      border-radius: 10px;
-      padding: 5px 15px;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-      font-weight: 500;
-    }
-    
-    .stepper-button:hover {
-      background-color: #e0e0ea;
-    }
-    
-    .slider-container {
-      flex-grow: 1;
-      position: relative;
-      padding: 0 10px;
-    }
-    
-    .slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 4px;
-      background: #d1d1d6;
-      border-radius: 2px;
-      outline: none;
-      opacity: 1;
-      transition: background 0.3s ease-in-out;
-    }
-    
-    .slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      border: 1px solid #d1d1d6;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease-in-out;
-    }
-    
-    .slider::-webkit-slider-thumb:hover {
-      transform: scale(1.1);
-    }
-    
-    .slider:focus::-webkit-slider-thumb {
-      box-shadow: 0 0 0 5px rgba(0, 122, 255, 0.2);
-    }
-    
-    .slider::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #fff;
-      border: 1px solid #d1d1d6;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-    
-    .slider::-moz-range-progress {
-      background: #007aff;
-      height: 4px;
-      border-radius: 2px;
-    }
-    
-    .value-display {
-      font-size: 0.9em;
-      color: #333;
-    }
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Slider Stepper
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      .sliderStepper {
+            display           : flex;
+            align-items       : center;
+            gap               : 7px;
+            width             : 300px;
+            padding           : 0 0 10px 0;
+      }
+
+      .sliderStepper button {
+            background-color  : rgba(0, 0, 0, 0.05);
+            color             : #000;
+            border            : 0;
+            border-radius     : 5px;
+            padding           : 5px 15px;
+            cursor            : pointer;
+            transition        : background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-weight       : 500;
+            font-size         : 1.1em;
+      }
+
+      .sliderStepper button:hover {
+            background-color  : #e0e0ea;
+      }
+
+      .sliderStepper input {
+            -webkit-appearance: none;
+            width             : 100%;
+            height            : 6px;
+            background        : rgba(0, 0, 0, 0.05); 
+            border-radius     : 10px;
+            outline           : none;
+            transition        : background 0.3s ease-in-out;
+      }
+
+      .sliderStepper input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance        : none;
+            width             : 10px;
+            height            : 20px;
+            border-radius     : 2px;
+            background        : #fff;
+            border            : 1px solid #d1d1d6;
+            cursor            : pointer;
+            transition        : transform 0.3s ease-in-out;
+      }
+
+      .sliderStepper input::-webkit-slider-thumb:hover {
+            transform         : scale(1.1);
+      }

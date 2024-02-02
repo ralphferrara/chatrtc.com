@@ -6,95 +6,81 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, {useState} from "react";
+      import React, { useState, useRef }     from 'react';
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| JSON
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      import soundsJSON                         from '../../../../config/config.sounds.json';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import "./slider.stepper.css";
+      import './select.sound.css';
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Icons
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      import { FontAwesomeIcon }             from '@fortawesome/react-fontawesome';
+      import { IconDefinition }              from '@fortawesome/fontawesome-svg-core';
+      import { faPlay, faPause }             from '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Props
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      interface StepperSliderProps {
-            steps: number[];
-            defaultValue?: number;
-      }
+      interface SoundSelectorProps {
+            id: string;
+      }          
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-      //|| Component
+      //|| Setting Item
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const SliderStepper: React.FC<StepperSliderProps> = ({ steps, defaultValue}) => {
-	      const [value, setValue] = useState<number>(steps[0]);
+      const SelectSound: React.FC<SoundSelectorProps> = ({ id }) => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Find Closest Step Function
+            //|| Var
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const findClosestStep = (currentValue: number): number => {
-                  // Find the closest step to the current value
-                  const closest = steps.reduce((prev, curr) =>
-                        Math.abs(curr - currentValue) < Math.abs(prev - currentValue)
-                              ? curr
-                              : prev
-                  );
-                  return closest;
-            };
+            const [selectedSound, setSelectedSound] = useState("");
+            const audioRef = useRef(new Audio());        
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| On Change Function
+            //|| Handle the Selection Change
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const handleChange = (
-                  changeDirection: "increment" | "decrement"
-            ): void => {
-                  const currentIndex = steps.indexOf(value);
-                  if (
-                        changeDirection === "increment" &&
-                        currentIndex < steps.length - 1
-                  ) {
-                        setValue(steps[currentIndex + 1]);
-                  } else if (changeDirection === "decrement" && currentIndex > 0) {
-                        setValue(steps[currentIndex - 1]);
+            const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+                  const soundUrl = event.target.value;
+                  setSelectedSound(soundUrl);
+                  if (audioRef.current) {
+                        audioRef.current.pause();
+                        audioRef.current = new Audio(soundUrl);
                   }
-            };
+            };    
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| On Slider Change
+            //|| Toggle the Play/Pause Button
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const handleSliderChange = (
-                  e: React.ChangeEvent<HTMLInputElement>
-            ): void => {
-                  const newValue = Number(e.target.value);
-                  setValue(findClosestStep(newValue));
-            };
+            const togglePlayPause = () => {
+                  if (selectedSound === "") return;
+                  const audio = audioRef.current;
+                  if (audio.src) audio.play();    
+            };              
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Min/Max/Step
+            //|| Setting Item
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const min = Math.min(...steps);
-	      const max = Math.max(...steps);
-            const step = Math.min(
-                  ...steps.slice(1).map((value, index) => value - steps[index])
-            );
+            const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| JSX
+            //|| Setting Item
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="sliderStepper">
-                        <input
-                              type="range"
-                              min={min}
-                              max={max}
-                              value={value}
-                              onChange={handleSliderChange}
-                              step={step}
-                        />
-                        <button
-                              className="decrement"
-                              onClick={() => handleChange("decrement")}>
-                              -
-                        </button>
-                        <button
-                              className="increment"
-                              onClick={() => handleChange("increment")}>
-                              +
-                        </button>
+                  <div className="selectSound">
+                        <select id={id} value={selectedSound} onChange={handleSelectChange}>
+                              {Object.entries(soundsJSON).map(([key, value]) => (
+                                    <option key={key} value={value}>{capitalize(key)}</option>
+                              ))}
+                        </select>
+                        {selectedSound && (
+                              <button
+                                    className="player"
+                                    onClick={togglePlayPause}
+                              >
+                                    <FontAwesomeIcon icon={ faPlay } />                                    
+                              </button>
+                        )}
                   </div>
-      	);
+            );
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Export
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export default SliderStepper;
+      export default SelectSound;

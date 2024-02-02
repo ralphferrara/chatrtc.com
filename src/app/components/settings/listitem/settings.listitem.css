@@ -1,0 +1,47 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Settings ListItem
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.settingListItem {
+            display                 : block;
+            text-align              : left;
+            padding                 : 20px 20px;
+            border-top              : 1px solid var(--color-border-light);
+            cursor                  : pointer;
+            border-left             : 4px solid #EEE;
+      }
+
+      div.settingListItem h3 { 
+            font-size               : 1.1em;
+            padding                 : 2px 0;
+      }
+
+      div.settingListItem p { 
+            font-size               : 0.9em;
+            padding                 : 2px 0 10px 0;
+            opacity                 : 0.8;
+      }
+      
+      div.settingListItem span.example { 
+            display                 : block;
+            font-size               : 0.8em;
+            padding                 : 5px 0;
+            color                   : var(--color-text-light);
+      }
+
+      div.settingListItem select  { 
+            display                 : block;
+            width                   : 30%;
+            padding                 : 7px 7px;
+            margin                  : 0 0;
+            border                  : 1px solid var(--color-border-light);
+            border-radius           : 5px;
+            background              : #FFF;
+            font-size               : 0.95em;
+            color                   : var(--color-text);
+      }

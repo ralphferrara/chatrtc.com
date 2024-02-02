@@ -23,7 +23,7 @@
             filter            : 'all',
             searchTerm        : '',
             searchStatus      : 'off',
-            modalSettingsOpen : false
+            modalSettingsOpen : true
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Reducer

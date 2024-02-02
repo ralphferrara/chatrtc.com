@@ -6,24 +6,21 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, { useState, useEffect,useCallback }  from 'react';
+      import React, { useState, useEffect, useCallback, useRef }  from 'react';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { useAppDispatch, useAppSelector }          from '../../../../redux/store';
-      import { setModalSettingsClose }                   from '../../../../redux/actions/panel.user.actions';
+      import { useAppDispatch, useAppSelector }                   from '../../../../redux/store';
+      import { setModalSettingsClose }                            from '../../../../redux/actions/panel.user.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Custom Components
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import ButtonToggle                                from '../../buttons/toggle/button.toggle';
-      import ButtonColor                                 from '../../buttons/color/button.color';
-      import SliderStepper                               from '../../slider/stepper/slider.stepper';
+      import SettingsList                                         from '../../settings/list/settings.list';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-      //|| Import Main
+      //|| Icons
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { FontAwesomeIcon }             from '@fortawesome/react-fontawesome';
-      import { IconDefinition }              from '@fortawesome/fontawesome-svg-core';
-      import { faCog, faLock, faAnchor, faKey, faBell, faTimes }                                         from '@fortawesome/free-solid-svg-icons';
+      import { FontAwesomeIcon }                                  from '@fortawesome/react-fontawesome';
+      import { faCog, faAnchor, faBell, faTimes }                 from '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -37,117 +34,109 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const modalSettingsOpen  = useAppSelector((state) => state.panelUser.modalSettingsOpen);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Ref
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const generalRef        = useRef<HTMLDivElement>(null);
+            const dockRef           = useRef<HTMLDivElement>(null);
+            const notificationsRef  = useRef<HTMLDivElement>(null);
+            const areaSettingsRef   = useRef<HTMLDivElement>(null);
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| STate
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const [activeSection, setActiveSection] = useState<string>('general');            
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Dispatch
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const dispatch         = useAppDispatch(); 
+            const dispatch          = useAppDispatch(); 
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Color Change
+            //|| Scroll To Ref
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/            
+            const scrollToRef = useCallback((sectionTitle: string) => {
+                  let sectionRef;
+                  switch (sectionTitle) {
+                        case 'general': sectionRef = generalRef; break;
+                        case 'dock'   : sectionRef = dockRef;    break;
+                        case 'notify' : sectionRef = notificationsRef; break;
+                        default: return;
+                  }
+                  if (sectionRef && sectionRef.current) {
+                        sectionRef.current.scrollIntoView({ behavior: 'smooth' });
+                  }                  
+              
+            }, []);
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Scroll To Section
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const handleColorChange = (color: string) => {
-                  console.log('New color:', color);
+            const scrollToSection = useCallback((sectionTitle: string) => {
+                  setActiveSection(sectionTitle);
+                  scrollToRef(sectionTitle);                  
+            }, [scrollToRef]);         
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Handle Scroll
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const handleScroll = () => {
+                  /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+                  //|| Section => Ref Array
+                  //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+                  const sectionRefs = [
+                        { title: 'general',           ref: generalRef },
+                        { title: 'dock',              ref: dockRef },
+                        { title: 'notify',            ref: notificationsRef }
+                  ];              
+                  /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+                  //|| Current Section
+                  //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+                  const currentSection = sectionRefs.reduce((acc, { title, ref }) => {
+                        if (!ref.current || !areaSettingsRef.current) return acc;
+                        const containerTop      = areaSettingsRef.current.offsetTop;
+                        const sectionTop        = ref.current.offsetTop - containerTop;
+                        const sectionBottom     = sectionTop + ref.current.offsetHeight;
+                        const containerScroll   = areaSettingsRef.current.scrollTop;
+                        const containerHeight   = areaSettingsRef.current.clientHeight;
+                        if (sectionTop <= containerScroll + containerHeight && sectionBottom >= containerScroll) return title;
+                        return acc;
+                  }, '');
+                  setActiveSection(currentSection);
+                  console.log("SCROLLING");
+                  setActiveSection(currentSection);
             };            
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Window Listener
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            useEffect(() => {
+                  const areaSettingsEl = areaSettingsRef.current;
+                  if (areaSettingsEl) areaSettingsEl.addEventListener('scroll', handleScroll);
+                  return () => {
+                        if (areaSettingsEl) {
+                              areaSettingsEl.removeEventListener('scroll', handleScroll);
+                        }
+                  };
+            }, []);                        
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
                   <div className="modal overlay" style={ (modalSettingsOpen) ? { display: 'flex' } : { display: 'none' } }>
                         <div className="modal settings">
-                              <h1>Settings <i onClick={() => { dispatch(setModalSettingsClose()); }}><FontAwesomeIcon icon={ faTimes } /></i></h1>
-                              
+                              <h1>Settings <i onClick={() => { dispatch(setModalSettingsClose()); }}><FontAwesomeIcon icon={ faTimes } /></i></h1>                              
                               <div className="areaMain">
                                     <ul className="menuSettings">
-                                          <li><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
-                                          <li><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
-                                          <li><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
+                                          <li onClick={() => scrollToSection("general")} className={activeSection === "general" ? 'active' : ''}><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
+                                          <li onClick={() => scrollToSection("dock")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
+                                          <li onClick={() => scrollToSection("notify")} className={activeSection === "notify" ? 'active' : ''}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
                                     </ul>
-                                    <div className="areaSettings">
-                                          <h2><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
-                                          <div className="subsection">
-                                                <div className="settingGroup">
-                                                      <span>Select a theme</span>
-                                                      <select><option>Light</option><option>Dark</option></select>
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>My Font Color</span>
-                                                      <ButtonColor initialColor="#00ff00" onColorChange={handleColorChange} />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>My Font Size</span>
-                                                      <SliderStepper steps={[0, 25, 50, 75, 100]} />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Room Font Size</span>
-                                                      <SliderStepper steps={[0, 25, 50, 75, 100]} />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Disable Other Users Font Settings</span>
-                                                      <ButtonToggle id="disableUsersFonts" />
-                                                </div>
-
-
-
-                                                <div className="settingGroup">
-                                                      <span>Hide Offensive Language</span>
-                                                      <ButtonToggle id="offensiveLanguage" />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Auto Show Media</span>
-                                                      <ButtonToggle id="offensiveLanguage" />
-                                                </div>                                                
-
+                                    <div className="areaSettings" ref={areaSettingsRef}>
+                                          <h2 ref={generalRef}><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
+                                          <div className="subsection">                                                                                          
+                                                <SettingsList area="general" />
                                           </div>
-
-                                          <h2><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</h2>
+                                          <h2 ref={dockRef}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</h2>
                                           <div className="subsection">
-
-                                                <div className="settingGroup">
-                                                      <span>Dock Camera Size</span>
-                                                      <select><option>Small</option><option>Medium</option><option>Large</option></select>
-                                                </div>
-
-
-                                                <div className="settingGroup">
-                                                      <span>Video Camer Dock Placement</span>
-                                                      <select><option>Top</option><option>Bottom</option></select>
-                                                </div>
-
-
+                                                <SettingsList area="dock" />
                                           </div>
-
-                                          <h2><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</h2>
+                                          <h2 ref={notificationsRef}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</h2>
                                           <div className="subsection">
-      
-                                                <div className="settingGroup">
-                                                      <span>Dont show room messages from people I've blocked</span>
-                                                      <ButtonToggle id="disableBlockedMessages" />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Show Message when Users enter or leave</span>
-                                                      <ButtonToggle id="disableEnterLeaves" />
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Sound : User Enters the room</span>
-                                                      <select><option>Default</option><option>Custom</option></select>
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Sound : User Leaves the room</span>
-                                                      <select><option>Default</option><option>Custom</option></select>
-                                                </div>
-
-                                                <div className="settingGroup">
-                                                      <span>Sound : New Message</span>
-                                                      <select><option>Default</option><option>Custom</option></select>
-                                                </div>
-
-
+                                                <SettingsList area="notifications" />
                                           </div>
                                     </div>
                               </div>

@@ -10,7 +10,7 @@
       .buttonToggle {
             height            : 0;
             width             : 0;
-            visibility        : hidden;
+            display           : none;
       }
 
       .buttonToggleLabel {
@@ -18,9 +18,9 @@
             align-items       : center;
             justify-content   : space-between;
             cursor            : pointer;
-            width             : 70px;
-            height            : 35px;
-            background        : grey;
+            width             : 60px;
+            height            : 30px;
+            background        : #BBB;
             border-radius     : 100px;
             position          : relative;
             transition        : background-color .2s;
@@ -31,9 +31,9 @@
             position          : absolute;
             top               : 2px;
             left              : 2px;
-            width             : 30px;
-            height            : 30px;
-            border-radius     : 30px;
+            width             : 25px;
+            height            : 25px;
+            border-radius     : 25px;
             transition        : 0.2s;
             background        : #fff;
             box-shadow        : 0 0 2px 0 rgba(10, 10, 10, 0.29);
@@ -49,5 +49,5 @@
       }
 
       .buttonToggleLabel:active .buttonToggleButton {
-            width             : 60px;
+            width             : 50px;
       }
