@@ -50,7 +50,7 @@
       }
       
       div.modal.overlay div.modal div.areaMain{
-            grid-template-columns   : 30% 70%;
+            grid-template-columns   : 20% 80%;
             display                 : grid;
             height                  : 85%;
       }
@@ -61,7 +61,7 @@
 
       ul.menuSettings {
             display                 : flex;
-            flex-direction           : column;            
+            flex-direction          : column;            
             list-style              : none;
             padding                 : 0;
             margin                  : 0;
@@ -72,10 +72,9 @@
 
       ul.menuSettings li {
             display                 : block;
-            margin                  : 0 20px;
-            padding                 : 22px 10px ;
+            margin                  : 0 0;
+            padding                 : 16px 10px 16px 20px;
             color                   : var(--color-text);            
-            border-bottom           : 1px solid var(--color-border-light);
             cursor                  : pointer;
       }
 
@@ -83,8 +82,9 @@
             background-color        : var(--color-hover-bg);
             color                   : white;
       }      
+
       ul.menuSettings li.active i {
-            color                   : white;
+            color                   : #FFF;
       }
 
       ul.menuSettings li i {
@@ -97,6 +97,11 @@
 
       ul.menuSettings li:hover {
             background              : var(--color-hover-bg);
+            opacity                 : 0.8;
+            color                   : #FFF;
+      }
+
+      ul.menuSettings li:hover i {
             color                   : #FFF;
       }
 
