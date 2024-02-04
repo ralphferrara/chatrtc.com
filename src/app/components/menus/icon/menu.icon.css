@@ -10,6 +10,7 @@ div.menuIconMenu {
       grid-template-rows: repeat(5, 1fr); 
       text-align        : center;
       overflow          : hidden;
+      box-shadow        : 2px 4px 8px rgba(179, 179, 179, 0.2);
 }
 
 div.menuIconWrap { 
@@ -35,7 +36,7 @@ div.menuIconWrap button span {
 div.menuIconWrap button.menuButtonIcon {
       display           : block;
       border            : 0;
-      background        : var(--color-bg);
+      background        : #FFF;
       cursor            : pointer;  
       font-size         : 1.3em;
       color             : var(--color-icon-color);    

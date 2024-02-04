@@ -105,9 +105,11 @@
                               <ToolbarChat />
                         </div>
                         <div className="users">
-                              <ToolbarSearch />
-                              <UserList users={users} />
-                              <ToolbarMenu />
+                              <div className="usersOverlay">
+                                    <ToolbarSearch />
+                                    <UserList users={users} />
+                                    <ToolbarMenu />
+                              </div>
                         </div>
                   </main>                  
             );

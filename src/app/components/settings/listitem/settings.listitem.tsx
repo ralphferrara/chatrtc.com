@@ -8,9 +8,14 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import React                        from 'react';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-      //|| JSON
+      //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import settings                     from '../../../../config/config.settings.json';
+      import { useAppDispatch }           from '../../../../redux/store';
+      import { updateSettings }           from '../../../../redux/actions/settings.actions';
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Interfaces
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      import Settings                     from '../../../interfaces/settings';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Custom Components
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -30,34 +35,62 @@
       //|| Props
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       interface SettingsListItemProps {
-            setting: SettingsListItemInt;
+            setting     : SettingsListItemInt;
+            defaultValue: any;
       }
+      const useUpdateSetting = () => {
+            const dispatch = useAppDispatch();          
+            const updateSetting = (name: keyof Settings, value: Settings[keyof Settings]) => {
+                  dispatch(updateSettings({ [name]: value } as Partial<Settings>));
+            };          
+            return updateSetting;
+      };      
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Setting Item
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const SettingsListItem: React.FC<SettingsListItemProps> = ( { setting } ) => {
+      const SettingsListItem: React.FC<SettingsListItemProps> = ( { setting, defaultValue } ) => {
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Map out settings
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const updateSetting = useUpdateSetting();
+            const handleSettingsChange = (name: string, newValue: any) => {
+                  updateSetting(setting.name as keyof Settings, newValue);
+            };
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| ExampleClass
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const exampleClass = (settingName: string, settingValue : string) => {            
+                  var strVal = String(settingValue);
+                  var eClassName = "example " + settingName + strVal.charAt(0).toUpperCase() + strVal.slice(1);
+                  //console.log(eClassName);
+                  return eClassName;
+            }
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Render Setting
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const renderSetting = (setting: SettingsListItemInt) => {
                   /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-                  //|| Array
+                  //|| Select CSV Array
                   //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   if (setting.type.startsWith("array")) {
                         const stringItems = setting.type.substring(6, setting.type.length - 1);
-                        return <SelectCSV id={ setting.name } items={ stringItems } />;
+                        return(<SelectCSV id={ setting.name } items={ stringItems } defaultValue={ defaultValue } onChange={ handleSettingsChange } />);
                   }
                   /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-                  //|| Stepper
+                  //|| Range Slider
                   //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   if (setting.type.startsWith("range")) {
-                        const range = setting.type.substring(6, setting.type.length - 1);
-                        return <SliderStepper steps={ [25,50,75,100] } defaultValue={setting.default as number} />;
+                        const range       = setting.type.substring(6, setting.type.length - 1);
+                        const rangeArray  = range.split(",");
+                        return <SliderStepper id={ setting.name } steps={ rangeArray.map(Number) } defaultValue={ defaultValue } onChange={ handleSettingsChange } />;
                   }
+                  /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+                  //|| Other Types
+                  //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   switch (setting.type) {
-                        case 'color':                 return <input type="color" defaultValue={setting.default as string} />;
-                        case 'boolean' :              return <ButtonToggle id={ setting.name } />;
-                        case 'sound' :                return <SelectSound id={ setting.name } />;      
+                        case 'color':                 return <input type="color" defaultValue={ defaultValue } onChange={ ( event: React.ChangeEvent<HTMLInputElement> ) => handleSettingsChange(setting.name, event.target.value) } />;
+                        case 'boolean' :              return <ButtonToggle id={ setting.name } value={ defaultValue } onChange={ ( newValue:boolean ) => handleSettingsChange(setting.name, newValue) } />;
+                        case 'sound' :                return <SelectSound  id={ setting.name } defaultValue={ defaultValue } onChange={ handleSettingsChange } />;
                         default: return <input />;
                   }
             };            
@@ -69,10 +102,13 @@
                   //|| Generate all the Settings Components
                   //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   <div className="settingListItem" key={setting.name}>
-                        <h3>{setting.header}</h3>
-                        <p>{setting.description}</p>
-                        { renderSetting(setting) }
-                        { setting.example !== undefined ? ( <span className="example">Example: {setting.example}</span> ) : null }
+                        <div className="description">
+                              <h3>{setting.header}</h3>                              
+                              <p>{setting.description}</p>
+                              { setting.example !== undefined ? ( <span className={ exampleClass(setting.name, defaultValue) }>Example: {setting.example}</span> ) : null }
+                        </div>
+                        <div className="component">{ renderSetting(setting) }</div>
+                        
                   </div>
             );
 

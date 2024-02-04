@@ -15,19 +15,19 @@
       //|| Props
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       interface StepperSliderProps {
-            steps: number[];
-            defaultValue?: number;
+            id                : string;
+            steps             : number[];
+            defaultValue?     : number;
+            onChange          : Function;
       }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Component
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const SliderStepper: React.FC<StepperSliderProps> = ({ steps, defaultValue}) => {
-	      const [value, setValue] = useState<number>(steps[0]);
+      const SliderStepper: React.FC<StepperSliderProps> = ({ id, steps, defaultValue, onChange }) => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Find Closest Step Function
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const findClosestStep = (currentValue: number): number => {
-                  // Find the closest step to the current value
                   const closest = steps.reduce((prev, curr) =>
                         Math.abs(curr - currentValue) < Math.abs(prev - currentValue)
                               ? curr
@@ -38,27 +38,23 @@
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| On Change Function
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const handleChange = (
-                  changeDirection: "increment" | "decrement"
-            ): void => {
-                  const currentIndex = steps.indexOf(value);
-                  if (
-                        changeDirection === "increment" &&
-                        currentIndex < steps.length - 1
-                  ) {
-                        setValue(steps[currentIndex + 1]);
+            const handleChange = (changeDirection: "increment" | "decrement") => {
+                  const safeDefaultValue = defaultValue !== undefined ? defaultValue : steps[0];
+                  const currentIndex = steps.indexOf(safeDefaultValue);
+                  console.log(currentIndex);
+                  if (changeDirection === "increment" && currentIndex < steps.length - 1) {
+                        onChange(id, findClosestStep(steps[currentIndex + 1]));
                   } else if (changeDirection === "decrement" && currentIndex > 0) {
-                        setValue(steps[currentIndex - 1]);
+                        onChange(id, findClosestStep(steps[currentIndex - 1]));
                   }
             };
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| On Slider Change
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const handleSliderChange = (
-                  e: React.ChangeEvent<HTMLInputElement>
-            ): void => {
-                  const newValue = Number(e.target.value);
-                  setValue(findClosestStep(newValue));
+            const handleOnChange = (event: React.ChangeEvent<HTMLInputElement> | undefined | void, callback:Function, id:string) => {
+                  if (!event) return;
+                  const value = Number(event.target.value);
+                  callback(id, findClosestStep(value));
             };
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Min/Max/Step
@@ -72,25 +68,17 @@
             //|| JSX
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="sliderStepper">
+                  <div className="sliderStepper" id={ id }>
                         <input
                               type="range"
                               min={min}
                               max={max}
-                              value={value}
-                              onChange={handleSliderChange}
+                              value={defaultValue}
+                              onChange={ ( event ) => handleOnChange(event, onChange, id) }
                               step={step}
                         />
-                        <button
-                              className="decrement"
-                              onClick={() => handleChange("decrement")}>
-                              -
-                        </button>
-                        <button
-                              className="increment"
-                              onClick={() => handleChange("increment")}>
-                              +
-                        </button>
+                        <button className="decrement" onClick={() => handleChange("decrement")}>-</button>
+                        <button className="increment" onClick={() => handleChange("increment")}>+</button> 
                   </div>
       	);
       };

@@ -8,12 +8,13 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
 
       div.settingListItem {
-            display                 : block;
+            display                 : grid;
             text-align              : left;
             padding                 : 20px 20px;
             border-top              : 1px solid var(--color-border-light);
             cursor                  : pointer;
             border-left             : 4px solid #EEE;
+            grid-template-columns   : 2fr 1fr;
       }
 
       div.settingListItem h3 { 
@@ -36,7 +37,7 @@
 
       div.settingListItem select  { 
             display                 : block;
-            width                   : 30%;
+            width                   : 100%;
             padding                 : 7px 7px;
             margin                  : 0 0;
             border                  : 1px solid var(--color-border-light);
@@ -44,4 +45,46 @@
             background              : #FFF;
             font-size               : 0.95em;
             color                   : var(--color-text);
+      }
+
+      div.settingListItem .component  { 
+            display                 : flex;
+            align-items             : center;
+            justify-content         : left;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Examples
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.settingListItem span.example.fontSizeMine1,
+      div.settingListItem span.example.fontSizeRoom1 { 
+            font-size               : 0.8em;
+      }
+
+      div.settingListItem span.example.fontSizeMine2,
+      div.settingListItem span.example.fontSizeRoom2 { 
+            font-size               : 1em;
+      }
+
+      div.settingListItem span.example.fontSizeMine3,
+      div.settingListItem span.example.fontSizeRoom3 { 
+            font-size               : 1.2em;
+      }
+
+      div.settingListItem span.example.fontSizeMine4,
+      div.settingListItem span.example.fontSizeRoom4 { 
+            font-size               : 1.4em;
+      }
+
+      div.settingListItem span.example.disableUserFontsTrue {
+            background-image        : linear-gradient(to left, violet, indigo, blue, green,orange, red);
+            -webkit-background-clip : text;
+            color                   : transparent;
+            font-size               : 1.2em;
+      }
+
+      div.settingListItem span.example.disableUserFontsFalse {
+            color                   : black;
+            font-size               : 1.0em;
       }

@@ -16,15 +16,19 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       interface ButtonToggleProps {
             id                      : string;
-            onChange?               : () => void;
+            onChange                : Function;
+            value                   : boolean;
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Button Toggle
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const ButtonToggle: React.FC<ButtonToggleProps> = ({ id, onChange }) => {
+      const ButtonToggle: React.FC<ButtonToggleProps> = ({ id, onChange, value }) => {
+            const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+                  onChange(event.target.checked);
+            };            
             return (
                   <>
-                        <input className="buttonToggle" id={ id } onChange={ onChange } type="checkbox" />
+                        <input checked={value} className="buttonToggle" id={ id } onChange={ handleChange } type="checkbox" />
                         <label className="buttonToggleLabel" htmlFor={ id }><span className="buttonToggleButton" /></label>
                   </>
             );

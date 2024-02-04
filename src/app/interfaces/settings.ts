@@ -8,17 +8,17 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       export default interface Settings {
-            dockSize                : "S" | "M" | "L";
+            dockSize                : 1 | 2 | 3;
             dockAlign               : "TOP" | "BOTTOM";
             theme                   : "DARK" | "LIGHT";
             disableUserFonts        : boolean;
-            fontSizeRoom            : number;
-            fontSizeMine            : string;
-            fontColorMine           : number;
+            fontSizeRoom            : 1 | 2 | 3 | 4;
+            fontSizeMine            : 1 | 2 | 3 | 4;
+            fontColorMine           : string;
             offensiveFilter         : boolean;
             notifyEnterLeave        : boolean;
-            showBlockedMessages     : string;
-            autoShowMedia           : string;
+            showBlockedMessages     : boolean;
+            autoShowMedia           : boolean; 
             soundOnEnter            : string;
             soundOnLeave            : string;
             soundOnMessage          : string;
