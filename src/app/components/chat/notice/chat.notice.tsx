@@ -6,56 +6,29 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, { useState }    from 'react';
-      import Message                from '../../../interfaces/message';
-      import Reaction               from '../../../interfaces/reaction';
+      import React                  from 'react';
+      import Notice                 from '../../../interfaces/notice';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import './chat.listitem.css';
+      import './chat.notice.css';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Props
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      interface ChatListItemProps {
-            message          : Message;
+      interface ChatNoticeProps {
+            notice          : Notice;
       }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Component
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const ChatListItem: React.FC<ChatListItemProps> = ({ message }) => {
-            const [expanded, setExpanded] = useState(false);
-            const handleExpand = () => {
-                  setExpanded(!expanded);
-            };
-
+      const ChatNotice: React.FC<ChatNoticeProps> = ({ notice }) => {
             return (
-                  <div className="chatItem">
-                        <div className="image">
-                              <img alt={ message.username } className="profile" src={ message.profile } />
-                        </div>
-                        <div className="message" onClick={ handleExpand }>
-                              <a className="username" href="#" title="View Profile">{message.username}</a>
-                              <p>{message.message}</p>
-                              <span className="time">{message.timestamp}</span>                              
-                        </div>
-                        { expanded && (
-                              <div>
-                                    <button>DM</button>
-                                    <button>Whisper To</button>
-                                    <button>Direct Message</button>
-                                    <button>View Profile</button>
-                                    <button>Block</button>
-                              </div>
-                        )}
-                        <div>
-                              {/* {message.reactions.map((reaction) => (
-                                    <span key={index}>{reaction}</span>
-                              ))} */}
-                        </div>
+                  <div className="chatNotice">
+                        { notice.message }
                   </div>
             );
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Export
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export default ChatListItem;
+      export default ChatNotice;

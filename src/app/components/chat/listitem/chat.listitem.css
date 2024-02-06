@@ -7,7 +7,7 @@
       //|| Chat List Items
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       
-      div.chat-list-item {
+      div.chatItem {
             display               : grid;
             flex-direction        : row;
             align-items           : center;
@@ -19,7 +19,7 @@
             border-radius         : 10px;
       } 
 
-      div.chat-list-item div {
+      div.chatItem div {
             vertical-align        : top; 
             min-height            : 40px; 
             justify-content       : top;
@@ -30,7 +30,7 @@
       //|| Chat List Profile Pic
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
-      div.chat-list-item div.image {
+      div.chatItem div.image {
             display               : flex;
             flex-direction        : column;
             align-items           : center;
@@ -38,7 +38,7 @@
             padding               : 0 10px;
       }
 
-      div.chat-list-item img.profile {
+      div.chatItem img.profile {
             width                 : 35px;
             height                : 35px;
             border-radius         : 50%;  
@@ -50,19 +50,19 @@
       //|| Chat List Item Message
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
      
-      div.chat-list-item div.message a.username {
+      div.chatItem div.message a.username {
             font-size             : 0.8em;
             font-weight           : bold;
             color                 : var(--color-primary);
             text-decoration       : none;
       }
 
-      div.chat-list-item div.message span.time {
+      div.chatItem div.message span.time {
             font-size             : 0.7em;
             color                 : #CCC;
       }
 
-      div.chat-list-item div.message {
+      div.chatItem div.message {
             display                 : flex;
             flex-direction          : column;
             align-items             : flex-start;
@@ -75,7 +75,7 @@
             background              : #FFF;
       }
 
-      div.chat-list-item div.message p {
+      div.chatItem div.message p {
             font-size               : 0.8em;
             line-height             : 1.2em;
             color                   : #000;

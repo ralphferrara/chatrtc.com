@@ -19,6 +19,7 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import User                                           from '../../../interfaces/user';
       import Message                                        from '../../../interfaces/message';
+      import Notice                                         from '../../../interfaces/notice';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Components - Custom
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -31,6 +32,7 @@
       import UserList                                       from '../../users/list/user.list';
       import ChatList                                       from '../../chat/list/chat.list';
       import ChatListItem                                   from '../../chat/listitem/chat.listitem';
+      import ChatNotice                                     from '../../chat/notice/chat.notice';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -143,6 +145,7 @@
                         <div className="main" onClick={ () => { dispatch(clearActiveMenu()); } }>
                               <div className="chatOverlay">
                                     <ChatList>
+                                          <ChatNotice notice={{ message: "Welcome to the chat room"}} />
                                           <ChatListItem message={ myMessages[0] }/>
                                           <ChatListItem message={ myMessages[1] }/>
                                     </ChatList>
