@@ -17,7 +17,18 @@
             padding                 : 3px 5px;
       }
 
+      main.closed .userListItem {
+            margin                  : 0 0;
+            padding                 : 2px 20px 10px;
+      }
+
+      main.closed .userListItem:hover {
+            background              : var(--color-hover-bg);
+      }
+
+
       .userListItem.open {
+
             grid-template-columns   : 50px 150px 1fr;
       }
 

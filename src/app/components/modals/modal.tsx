@@ -40,15 +40,15 @@
             //|| Handle Change
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return isOpen ? (
-                  <div className="modal-overlay" style={{ display: 'flex' }} onClick={() => onClose()}>
-                        <div className={`modal-window ${className}`} onClick={ (event) => { dontClose(event); } }>
+                  <div className="modalOverlay" style={{ display: 'flex' }} onClick={() => onClose()}>
+                        <div className={`modalWindow ${className}`} onClick={ (event) => { dontClose(event); } }>
                               <h1>
                                     {header}
                                     <i onClick={() => onClose()}>
                                           <FontAwesomeIcon icon={faTimes} />
                                     </i>
                               </h1>
-                              <div className="modal-content">
+                              <div className="modalContent">
                                     {children}
                               </div>
                         </div>

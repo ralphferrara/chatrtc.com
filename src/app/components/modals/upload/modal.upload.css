@@ -4,7 +4,7 @@
 //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
 
-div.modal-window.upload div.uploadBox {
+div.modalWindow.upload div.uploadBox {
       padding           : 20px;
       border-radius     : 8px;
       overflow          : auto;
@@ -17,27 +17,27 @@ div.modal-window.upload div.uploadBox {
       cursor            : pointer;
 }
 
-div.modal-window.upload div.uploadBox p {
+div.modalWindow.upload div.uploadBox p {
       padding           : 25px;
       border-radius     : 8px;
 }
 
-div.modal-window.upload div.uploadBox p.drop {
+div.modalWindow.upload div.uploadBox p.drop {
       font-size         : 1.5em;
       color             : var(--color-text-light);
 }
             
-div.modal-window.upload div.uploadBox p.drag {
+div.modalWindow.upload div.uploadBox p.drag {
       font-size         : 2em;
       background        : var(--color-inactive-bg);
       color             : #FFF;
 }
 
-div.modal-window.upload div.uploadBox ul:empty {
+div.modalWindow.upload div.uploadBox ul:empty {
       display           : none;
 }
 
-div.modal-window.upload div.uploadBox ul {
+div.modalWindow.upload div.uploadBox ul {
       width             : 50%;
       height            : 500px;
       overflow          : auto;
@@ -46,7 +46,7 @@ div.modal-window.upload div.uploadBox ul {
       border-radius     : 10px;
 }
 
-div.modal-window.upload div.uploadBox ul li {
+div.modalWindow.upload div.uploadBox ul li {
       list-style        : none;
       border-bottom     : 1px solid var(--color-border-light);
       padding           : 5px 0;
@@ -54,11 +54,11 @@ div.modal-window.upload div.uploadBox ul li {
       display           : block;
 }
 
-div.modal-window.upload div.uploadBox ul li:last-child{
+div.modalWindow.upload div.uploadBox ul li:last-child{
       border-bottom     : none;
 }
 
-div.modal-window.upload div.uploadBox ul li i {
+div.modalWindow.upload div.uploadBox ul li i {
       margin-right      : 10px;
       display           : inline-block;
       border-radius     : 50%;

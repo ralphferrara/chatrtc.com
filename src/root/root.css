@@ -8,7 +8,7 @@
             //|| Sizes
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             --width-users           : 30%;
-            --width-users-closed    : 100px;
+            --width-users-closed    : 80px;
             --width-main            : 70%;
             --width-main-closed     : calc(100% - var(--width-users-closed));
             --height-toolbar        : 80px;

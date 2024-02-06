@@ -7,7 +7,7 @@
       //|| Wrapper
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
 
-      div.modal-overlay { 
+      div.modalOverlay { 
             position                : fixed;
             top                     : 0;
             left                    : 0;
@@ -20,7 +20,7 @@
             z-index                 : 100;
       }
 
-      div.modal-overlay div.modal-window {
+      div.modalOverlay div.modalWindow {
             background              : #FFF;
             border                  : 2px solid var(--color-border-heavy);
             border-radius           : 10px;
@@ -28,13 +28,13 @@
             width                   : 80%;
             height                  : 80%;
             box-shadow              : 0 0 10px rgba(0, 0, 0, 0.2);
-            overflow                : auto;
+            overflow                : hidden;
             display                 : flex;
             flex-direction          : column;            
             z-index                 : 200;
       }
 
-      div.modal-overlay div.modal-window h1 {
+      div.modalOverlay div.modalWindow h1 {
             position                : relative;
             font-size               : 1.5em;
             margin                  : 0 0 10px 0;
@@ -44,7 +44,7 @@
             padding                 : 10px 20px 10px 5px;
       }
 
-      div.modal-overlay div.modal-window h1 i {
+      div.modalOverlay div.modalWindow h1 i {
             position                : absolute;
             right                   : 0;
             top                     : 5px;
@@ -53,9 +53,10 @@
             cursor                  : pointer;
       }
 
-      div.modal-overlay div.modal-window div.modal-content {
+      div.modalOverlay div.modalWindow div.modalContent {
             flex                    : 1;
             overflow                : hidden;
+            height                  : 100%;
       }
       
       

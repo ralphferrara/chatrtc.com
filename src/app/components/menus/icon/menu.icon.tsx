@@ -46,7 +46,7 @@
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Menu State and Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const [menuPosition, setMenuPosition]     = useState<{ display?:string; left?: number, width?:number, bottom?:number, height?:number, totalH?:number }>({});
+            const [menuPosition, setMenuPosition]     = useState<{ display?:string; left?: number, width?:number, bottom?:number, height?:number, totalH?:number, isOpen?:boolean }>({});
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Active Menu
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/            
@@ -56,17 +56,17 @@
             //|| Set Menu Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const setMenuPositionFunction = useCallback(() => {
-                  console.log(target, activeMenu);
                   if (activeMenu === target) return dispatch(clearActiveMenu()); else dispatch(setActiveMenu(target));
                   const targetElement = document.getElementById(target);
                   if (targetElement) {
                         const rect                = targetElement.getBoundingClientRect();
                         setMenuPosition({ 
                               left     : rect.left,
-                              bottom   : (window.innerHeight - rect.top),
-                              width    : rect.width,
+                              bottom   : (window.innerHeight - rect.top + 5),
+                              width    : rect.width - 2,
                               height   : rect.height,
-                              totalH   : rect.height * items.length
+                              totalH   : rect.height * items.length,
+                              isOpen   : true
                         });
                   };
             }, [target, activeMenu, dispatch, items]);
@@ -74,8 +74,10 @@
             //|| Add Target Action
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             useEffect(() => {
-                  const targetElement = document.getElementById(target);
-                  if (targetElement) targetElement.addEventListener('click', setMenuPositionFunction);
+                  const targetElement = document.getElementById(target);                  
+                  if (targetElement) {
+                        targetElement.addEventListener('click', setMenuPositionFunction);                        
+                  }
                   return () => {
                         if (targetElement) targetElement.removeEventListener('click', setMenuPositionFunction);
                   };
@@ -84,7 +86,11 @@
             //|| ClickAction
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const MenuIconClickAction = (item:MenuIconItem) => {
-                  dispatch(clearActiveMenu());
+                  const clickedElements = document.querySelectorAll('.clicked');
+                  clickedElements.forEach((element) => {
+                        element.classList.remove('clicked');
+                  });
+                  dispatch(clearActiveMenu());                  
                   if (typeof(item.event) === 'function') item.event();                  
             };
             if (forceClose) dispatch(clearActiveMenu());
@@ -114,7 +120,7 @@
                                                 title={item.title}
                                           >
                                                 <FontAwesomeIcon icon={item.icon} />
-                                                <span className="right">{item.title}</span>
+                                                <span>{item.title}</span>
                                           </button>
                                           
                                     </div>
