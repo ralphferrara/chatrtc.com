@@ -15,6 +15,7 @@
       import { PanelUserReducer }                                 from '../redux/reducers/panel.user.reducer';
       import { MenuIconReducer }                                  from '../redux/reducers/menu.icon.reducer';
       import { SettingsReducer }                                  from '../redux/reducers/settings.reducer';
+      import { ModalReducer }                                     from '../redux/reducers/modal.reducer';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
@@ -22,6 +23,7 @@
             "panelUser"           : PanelUserReducer,
             "settings"            : SettingsReducer,
             "menuIcon"            : MenuIconReducer,  
+            "modals"              : ModalReducer 
       });
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer

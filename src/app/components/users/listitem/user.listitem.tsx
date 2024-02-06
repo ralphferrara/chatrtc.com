@@ -65,34 +65,32 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
                   <div className={`userListItem ${isExpanded}`}>
-                        <div className="topSide">
-                              <div className="userImage" onClick={ handleExpanded }>
-                                    <img src={user.profile} alt={user.username} />
-                              </div>
-                              <div className="userInfo" onClick={ handleExpanded }>
-                                    <ul>
-                                          <li className="username">{user.username}</li> 
-                                          <li className="location">{user.city}, {user.state} ({user.distance}mi)</li>
-                                    </ul>
-                              </div>
-                              <div className="userIcons" onClick={ handleExpanded }>                              
-                                    <i className="age">{user.age}</i>
-                                    <i className={ (user.certified) ? "certified" : "notCertified" }><FontAwesomeIcon icon={faCertificate} /></i>
-                                    <i className={ userGenderA }><FontAwesomeIcon icon={faUser} /></i>
-                                    <i className={ userGenderB }><FontAwesomeIcon icon={faUser} /></i>
-                                    <i className={ user.status }>
-                                          <FontAwesomeIcon className="active" icon={faCircle} />
-                                          <FontAwesomeIcon className="away"  icon={faMoon} />
-                                          <FontAwesomeIcon className="idle"  icon={faHourglassHalf} />
-                                    </i>
-                              </div>
-                              <div className="userButtons">
-                                    {user.isBroadcasting && <button className="viewCamera"><FontAwesomeIcon icon={ faVideo } /></button>}
-                                    {!user.isBroadcasting && <button onClick={ handleExpanded }></button>}
-                                    
-                              </div>
+                        <div className="userImage" onClick={ handleExpanded }>
+                              <img src={user.profile} alt={user.username} />
                         </div>
-                        <div className="bottomSide">
+                        <div className="userInfo" onClick={ handleExpanded }>
+                              <ul>
+                                    <li className="username">{user.username}</li> 
+                                    <li className="location">{user.city}, {user.state} ({user.distance}mi)</li>
+                              </ul>
+                        </div>
+                        <div className="userIcons" onClick={ handleExpanded }>                              
+                              <i className="age">{user.age}</i>
+                              <i className={ (user.certified) ? "certified" : "notCertified" }><FontAwesomeIcon icon={faCertificate} /></i>
+                              <i className={ userGenderA }><FontAwesomeIcon icon={faUser} /></i>
+                              <i className={ userGenderB }><FontAwesomeIcon icon={faUser} /></i>
+                              <i className={ user.status }>
+                                    <FontAwesomeIcon className="active" icon={faCircle} />
+                                    <FontAwesomeIcon className="away"  icon={faMoon} />
+                                    <FontAwesomeIcon className="idle"  icon={faHourglassHalf} />
+                              </i>
+                        </div>
+                        <div className="userButtons">
+                              {user.isBroadcasting && <button className="viewCamera"><FontAwesomeIcon icon={ faVideo } /></button>}
+                              {!user.isBroadcasting && <button onClick={ handleExpanded }></button>}
+                              
+                        </div>
+                        <div className="userActions">
                               <ButtonIcon className="short" icon={faCircleArrowRight} title="Direct" />
                               <ButtonIcon className="short" icon={faUserSecret} title="Whisper" />
                               <ButtonIcon className="short" icon={faEnvelope} title="Message" />

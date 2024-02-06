@@ -15,6 +15,11 @@
       import { faPhotoFilm,faChevronRight }                 from '@fortawesome/free-solid-svg-icons';
       import { faUserSecret,faCircleArrowRight,faXmark }    from  '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Redux
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+      import { useAppDispatch }                             from '../../../../redux/store';
+      import { openModalUpload }                            from '../../../../redux/actions/modal.actions';
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
       import './toolbar.chat.css';
@@ -28,6 +33,10 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const [directState, setDirect] = useState(0);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Dispatch
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const dispatch    = useAppDispatch();                   
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return(
@@ -38,7 +47,7 @@
                               <ButtonIcon className={`icon ${(directState !== 1) ? '' : 'active'}`} title="Directed Message" icon={faCircleArrowRight} onClick={() => setDirect((directState === 1) ? 0 : 1) } />
                               <ButtonIcon className={`icon ${(directState !== 2) ? '' : 'active'}`} title="Whisper Message" icon={faUserSecret} onClick={() => setDirect((directState === 2) ? 0 : 2) } />
                               <textarea id="sendText" placeholder="Enter a message"></textarea> 
-                              <ButtonIcon className={`icon`} icon={faPhotoFilm}           title="Upload Media" onClick={() => {alert('Upload Image!')} } />
+                              <ButtonIcon className={`icon`} icon={faPhotoFilm}           title="Upload Media" onClick={() => { dispatch(openModalUpload()) } } /> 
                               <ButtonIcon className={`icon`} icon={faChevronRight}        title="Send" onClick={() => {alert('Sent!')} } />
                         </div>
                   </div>            

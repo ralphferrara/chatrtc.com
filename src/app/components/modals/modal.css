@@ -1,0 +1,61 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Modal CSS
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+          
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.modal-overlay { 
+            position                : fixed;
+            top                     : 0;
+            left                    : 0;
+            right                   : 0;
+            bottom                  : 0;
+            background              : rgba(0, 0, 0, 0.5);
+            display                 : flex;
+            justify-content         : center;
+            align-items             : center;
+            z-index                 : 100;
+      }
+
+      div.modal-overlay div.modal-window {
+            background              : #FFF;
+            border                  : 2px solid var(--color-border-heavy);
+            border-radius           : 10px;
+            padding                 : 20px;
+            width                   : 80%;
+            height                  : 80%;
+            box-shadow              : 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow                : auto;
+            display                 : flex;
+            flex-direction          : column;            
+            z-index                 : 200;
+      }
+
+      div.modal-overlay div.modal-window h1 {
+            position                : relative;
+            font-size               : 1.5em;
+            margin                  : 0 0 10px 0;
+            padding                 : 0;
+            color                   : var(--color-text);
+            display                 : block;
+            padding                 : 10px 20px 10px 5px;
+      }
+
+      div.modal-overlay div.modal-window h1 i {
+            position                : absolute;
+            right                   : 0;
+            top                     : 5px;
+            padding                 : 0 10px;
+            font-size               : 1.5em;
+            cursor                  : pointer;
+      }
+
+      div.modal-overlay div.modal-window div.modal-content {
+            flex                    : 1;
+            overflow                : hidden;
+      }
+      
+      

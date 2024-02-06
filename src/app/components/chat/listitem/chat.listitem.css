@@ -1,0 +1,86 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Chat 
+//|| CSS:: Chat List Item
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Chat List Items
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      
+      div.chat-list-item {
+            display               : grid;
+            flex-direction        : row;
+            align-items           : center;
+            padding               : 10px;
+            margin                : 5px 10px;
+            width                 : calc(100% - 20px);
+            grid-template-columns : 50px 1fr 100px;    
+            vertical-align        : top;   
+            border-radius         : 10px;
+      } 
+
+      div.chat-list-item div {
+            vertical-align        : top; 
+            min-height            : 40px; 
+            justify-content       : top;
+            align-items           : top;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Chat List Profile Pic
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      div.chat-list-item div.image {
+            display               : flex;
+            flex-direction        : column;
+            align-items           : center;
+            justify-content       : center;
+            padding               : 0 10px;
+      }
+
+      div.chat-list-item img.profile {
+            width                 : 35px;
+            height                : 35px;
+            border-radius         : 50%;  
+            border                : 2px solid #FFF;
+            box-shadow            : 0 0 5px rgba(0, 0, 0, 0.2);          
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Chat List Item Message
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+     
+      div.chat-list-item div.message a.username {
+            font-size             : 0.8em;
+            font-weight           : bold;
+            color                 : var(--color-primary);
+            text-decoration       : none;
+      }
+
+      div.chat-list-item div.message span.time {
+            font-size             : 0.7em;
+            color                 : #CCC;
+      }
+
+      div.chat-list-item div.message {
+            display                 : flex;
+            flex-direction          : column;
+            align-items             : flex-start;
+            width                   : 100%;
+            justify-content         : top;
+            align-items             : flex-start;
+            line-height             : 1.1em;
+            padding                 : 10px 20px;
+            border-radius           : 10px;
+            background              : #FFF;
+      }
+
+      div.chat-list-item div.message p {
+            font-size               : 0.8em;
+            line-height             : 1.2em;
+            color                   : #000;
+            margin                  : 0;
+            display                 : flex;
+            width                   : 100%;
+            padding                 : 0;
+      }

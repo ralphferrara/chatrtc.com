@@ -1,5 +1,5 @@
 /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-//|| ChatRTC :: Container
+//|| ChatRTC :: User
 //|| CSS:: User List Item
 //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
@@ -7,37 +7,37 @@
       //|| Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
-      .userListItem .topSide {
-            display           : grid;
-            align-items       : center;
-            grid-template-columns: 50px 2fr 1.5fr 60px;
-            margin            : 4px 10px 0;
-            background        : rgba(255,255,255,0.9);
-            border-radius     : 10px;
-            cursor            : pointer;
-            padding           : 3px 5px;
-      }
-      .userListItem.open .topSide {
-            border-radius     : 10px 10px 0 0;
+      .userListItem {
+            display                 : grid;
+            align-items             : center;
+            grid-template-columns   : 50px 150px 1fr 60px;
+            margin                  : 4px 10px 0;
+            background              : rgba(255,255,255,0.9);
+            cursor                  : pointer;
+            padding                 : 3px 5px;
       }
 
-      .userListItem .topSide div {
-            display           : flex;
-            align-items       : middle;
-            justify-content   : middle;
-            overflow          : hidden;
-            height            : 100%;
-            padding           : 3px 0;
-            border-radius     : 0;
+      .userListItem.open {
+            grid-template-columns   : 50px 150px 1fr;
+      }
+
+      .userListItem div { 
+            height                  : 35px;
+            justify-content         : center;
+            align-items             : center;
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Image
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
-      .userListItem .topSide .userImage img {
-            width             : 40px;
-            height            : 40px;
+      .userListItem .userImage {
+            padding           : 0;
+      }
+
+      .userListItem .userImage img {
+            width             : 35px;
+            height            : 35px;
             border-radius     : 50%;
       }      
 
@@ -64,7 +64,6 @@
             max-height        : 1.2em;
             line-height       : 1.2em;
             overflow-x        : hidden;
-            padding           : 3px 0 0 0;
       }
 
       .userInfo .username { 
@@ -73,7 +72,6 @@
             color             : #333;
             text-decoration   : none;
             overflow          : hidden;
-            margin-right      : 10px;
             width             : 100%;
       }
 
@@ -83,7 +81,7 @@
             color             : rgba(100,100,100,0.4);
             text-decoration   : none;
             width             : 100%;
-            max-height        : 1.5em;
+            max-height        : 1.4em;
             overflow          : hidden;
       }
 
@@ -96,6 +94,10 @@
             text-align              : center;
             grid-template-columns   : 2fr 1fr 1fr 1fr 1fr; 
       }
+
+      .userListItem.open div.userIcons { 
+            display                 : none;
+      }
             
       .userListItem div.userIcons i { 
             display                 : flex;
@@ -104,7 +106,6 @@
             font-size               : 0.9em;
             color                   : #999;  
             margin                  : 6px 0;    
-            border-radius           : 10px;
       }
 
       .userListItem div.userIcons i.age { 
@@ -120,13 +121,16 @@
 
       .userButtons {
             display                 : flex;
-            padding                 : 5px 5px;
             justify-content         : center;
             align-items             : center;
             font-size               : 1.2em;
             color                   : #999;      
       }
             
+      .userListItem.open div.userButtons { 
+            display                 : none;
+      }
+
       .userButtons button {
             width                   : 100%;
             height                  : 100%;
@@ -143,24 +147,23 @@
             border-radius           : 5px;
             cursor                  : pointer;
             margin                  : 8px;
+            padding                 : 8px 8px;
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
-      .userListItem .bottomSide {
+      .userListItem .userActions {
             display                 : none;
             align-items             : center;
             grid-template-columns   : repeat(6, 1fr);
-            margin                  : 0 10px;
-            background              : rgba(255,255,255,0.9);
-            border-radius           : 0 0 10px 10px;
+            background              : rgba(0,0,0,0.05);
             cursor                  : pointer;
             padding                 : 0;
       }
 
-      .userListItem.open .bottomSide {
+      .userListItem.open .userActions {
             display                 : grid;
       }
       
@@ -227,30 +230,12 @@
             display           : none;
       }
 
-      main.closed .userListItem .topSide {
-            grid-template-columns: 100%;
-            padding           : 2px;
-      }
       main.closed .userListItem .userImage {
             justify-content  : center;
-            border-radius    : 0;
             padding          : 4px;
       }
 
       main.closed .userListItem .userImage img {
-            width            : 60px;
-            height           : 40px;
-            border-radius    : 0;
-      }
-
-      main.closed .userListItem .topSide:hover {
-            background        : var(--color-hover-bg);
-      }
-
-      main.closed .userListItem .topSide {
-            border-radius    : 10px;
-      }
-      
-      main.closed .userListItem .bottomSide {
-            display           : none;
+            width            : 35px;
+            height           : 35px;
       }

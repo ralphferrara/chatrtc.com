@@ -21,6 +21,7 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       interface ButtonIconProps {
             id?                     : string;
+            testId?                 : string;
             className?              : string;
             icon                    : IconDefinition;
             title                   : string;
@@ -29,8 +30,8 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const ButtonIcon: React.FC<ButtonIconProps> = ({ id, className, icon, title, onClick }) => {
-            return ( <button id={ id } className={`icon ${className}`} onClick={onClick} title={title}><FontAwesomeIcon icon={icon} /></button> );
+      const ButtonIcon: React.FC<ButtonIconProps> = ({ id, className, icon, title, onClick, testId }) => {
+            return ( <button data-testid={ testId } id={ id } className={`icon ${className}`} onClick={onClick} title={title}><FontAwesomeIcon icon={icon} /></button> );
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Export

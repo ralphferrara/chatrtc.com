@@ -32,7 +32,7 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Menu
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { setModalSettingsOpen }                                                                                         from '../../../../redux/actions/panel.user.actions';
+      import { openModalSettings }                          from '../../../../redux/actions/modal.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -137,7 +137,7 @@
             //|| Sort By Items
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const miMenu           : MenuIconItem[] = [
-                  { title: 'Settings',    icon: faCog,                  value: 'settings',      event: () => { dispatch(setModalSettingsOpen()) }  },
+                  { title: 'Settings',    icon: faCog,                  value: 'settings',      event: () => { dispatch(openModalSettings()) }  },
                   { title: 'Help',        icon: faQuestionCircle,       value: 'help',          event: () => {  }  },
                   { title: 'Rules',       icon: faClipboardList,        value: 'rules',         event: () => {  }  },
                   { title: 'Log Out',     icon: faSignOutAlt,           value: 'logout',        event: () => {  }  }

@@ -33,7 +33,7 @@
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| ClickAction
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const modalSettingsOpen  = useAppSelector((state) => state.panelUser.modalSettingsOpen);
+            const modalSettingsOpen  = useAppSelector((state) => state.modals.modalSettingsOpen);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Ref
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -133,32 +133,29 @@
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="modal overlay" style={ (modalSettingsOpen) ? { display: 'flex' } : { display: 'none' } }>
-                        <div className="modal settings">
-                              <h1>Settings <i onClick={() => { closeWindow(); }}><FontAwesomeIcon icon={ faTimes } /></i></h1>                              
-                              <div className="areaMain">
-                                    <ul className="menuSettings">
-                                          <li onClick={() => scrollToSection("general")} className={activeSection === "general" ? 'active' : ''}><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
-                                          <li onClick={() => scrollToSection("notify")} className={activeSection === "notify" ? 'active' : ''}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
-                                          <li onClick={() => scrollToSection("dock")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
-                                    </ul>
-                                    <div className="areaSettings" ref={areaSettingsRef}>
-                                          <h2 ref={generalRef}><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
-                                          <div className="subsection">                                                                                          
-                                                <SettingsList area="general" />
-                                          </div>
-                                          <h2 ref={notificationsRef}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</h2>
-                                          <div className="subsection">
-                                                <SettingsList area="notifications" />
-                                          </div>
-                                          <h2 ref={dockRef}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</h2>
-                                          <div className="subsection">
-                                                <SettingsList area="dock" />
-                                          </div>
+                  <>
+                        <div className="areaMain">
+                              <ul className="menuSettings">
+                                    <li onClick={() => scrollToSection("general")} className={activeSection === "general" ? 'active' : ''}><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
+                                    <li onClick={() => scrollToSection("notify")} className={activeSection === "notify" ? 'active' : ''}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
+                                    <li onClick={() => scrollToSection("dock")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
+                              </ul>
+                              <div className="areaSettings" ref={areaSettingsRef}>
+                                    <h2 ref={generalRef}><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
+                                    <div className="subsection">                                                                                          
+                                          <SettingsList area="general" />
+                                    </div>
+                                    <h2 ref={notificationsRef}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</h2>
+                                    <div className="subsection">
+                                          <SettingsList area="notifications" />
+                                    </div>
+                                    <h2 ref={dockRef}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</h2>
+                                    <div className="subsection">
+                                          <SettingsList area="dock" />
                                     </div>
                               </div>
                         </div>
-                  </div>
+                  </>
             );
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||

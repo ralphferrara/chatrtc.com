@@ -55,6 +55,7 @@
       div.toolbarSearchWrapper button:focus,
       div.toolbarSearchWrapper input:focus { 
             outline           : none;
+            background        : transparent;
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||

@@ -13,6 +13,11 @@
             -webkit-box-sizing      : border-box;
       }
 
+      div.chatOverlay {
+            background              : rgba(0,0,0, 0.7);
+            display                 : block;
+            height                  : 100%;
+      }
 
       main div.main {
             position         : fixed;
@@ -20,7 +25,8 @@
             left             : 0;
             bottom           : var(--height-toolbar);
             width            : var(--width-main);
-            background       : var(--color-bg);
+            background       : url(/public/img/backgrounds/background.jpg) no-repeat center center;
+            background-size  : cover; 
       }
 
       main div.users {
@@ -30,17 +36,8 @@
             right            : 0;
             width            : var(--width-users);
             overflow-y       : auto;
-            background       : url(/public/img/backgrounds/pexels-98099888.jpg) no-repeat center center;
             background-size  : cover;
-      }
-
-      div.users div.usersOverlay {
-            position         : fixed;
-            top              : 0;   
-            bottom           : var(--height-toolbar);
-            right            : 0;
-            width            : var(--width-users);
-            background       : rgba(0, 0, 0, 0.8);
+            background       : #FFF;
       }
 
       main.closed div.main {
@@ -48,5 +45,9 @@
       }
 
       main.closed div.users {
+            width            : var(--width-users-closed);
+      }
+
+      main.closed   div.users div.usersOverlay {
             width            : var(--width-users-closed);
       }
