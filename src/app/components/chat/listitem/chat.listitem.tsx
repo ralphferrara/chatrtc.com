@@ -34,7 +34,7 @@
                               <img alt={ message.username } className="profile" src={ message.profile } />
                         </div>
                         <div className="message" onClick={ handleExpand }>
-                              <a className="username" href="#" title="View Profile">{message.username}</a>
+                              <a target="_blank" className="username" href="/" title="View Profile">{message.username}</a>
                               <p>{message.message}</p>
                               <span className="time">{message.timestamp}</span>                              
                         </div>
@@ -48,9 +48,11 @@
                               </div>
                         )}
                         <div>
-                              {/* {message.reactions.map((reaction) => (
-                                    <span key={index}>{reaction}</span>
-                              ))} */}
+                              { 
+                                    message.reactions.map((reaction:Reaction) => (
+                                          <div></div>
+                                    ))
+                              }
                         </div>
                   </div>
             );

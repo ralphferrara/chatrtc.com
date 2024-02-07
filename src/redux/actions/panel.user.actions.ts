@@ -46,7 +46,7 @@
       export const setUserSortLevel      = (): UserSortLevel => ({
             type: USER_SORT_LEVEL
       });
-      export const setUserSortBroadcast  = (): UserSortBroadcast => ({
+      export const setUserSortBroadcasting  = (): UserSortBroadcast => ({
             type: USER_SORT_BROADCAST
       });
       export const setUserSortDistance   = (): UserSortDistance => ({

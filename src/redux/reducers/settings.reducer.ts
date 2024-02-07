@@ -24,7 +24,10 @@
             autoShowMedia           : true,
             soundOnEnter            : "",
             soundOnLeave            : "",
-            soundOnMessage          : ""
+            soundOnMessage          : "",
+            displayDistanceInKM     : false,
+            globalLanguage          : "en"
+
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Reducer

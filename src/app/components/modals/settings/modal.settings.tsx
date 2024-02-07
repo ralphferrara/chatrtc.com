@@ -7,12 +7,6 @@
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import React, { useState, useEffect, useCallback, useRef }  from 'react';
-      import axios                                                from 'axios';
-      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-      //|| Redux
-      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { useAppDispatch, useAppSelector }                   from '../../../../redux/store';
-      import { setModalSettingsClose }                            from '../../../../redux/actions/panel.user.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Custom Components
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -21,7 +15,7 @@
       //|| Icons
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { FontAwesomeIcon }                                  from '@fortawesome/react-fontawesome';
-      import { faCog, faAnchor, faBell, faTimes }                 from '@fortawesome/free-solid-svg-icons';
+      import { faCog, faAnchor, faBell, faGlobe }                 from '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -31,15 +25,12 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       const ModalSettings = () => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| ClickAction
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const modalSettingsOpen  = useAppSelector((state) => state.modals.modalSettingsOpen);
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Ref
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const generalRef        = useRef<HTMLDivElement>(null);
             const dockRef           = useRef<HTMLDivElement>(null);
             const notificationsRef  = useRef<HTMLDivElement>(null);
+            const globalRef         = useRef<HTMLDivElement>(null);
             const areaSettingsRef   = useRef<HTMLDivElement>(null);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| STate
@@ -98,26 +89,6 @@
                   setActiveSection(currentSection);
             };         
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Dispatch
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const dispatch    = useAppDispatch();                   
-            const mySettings  = useAppSelector((state) => state.settings);  
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Close the Window
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const closeWindow = async() => {
-                  /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-                  //|| Dispatch
-                  //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-                  console.log(mySettings);
-                  try {
-                        const response = await axios.post(process.env.BASEURL_ENDPOINT + "/user/settings/set", mySettings);
-                  } catch (error) {
-                        console.error('Error updating user settings:', error);
-                  }
-                  dispatch(setModalSettingsClose());
-            }
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Window Listener
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             useEffect(() => {
@@ -139,6 +110,7 @@
                                     <li onClick={() => scrollToSection("general")} className={activeSection === "general" ? 'active' : ''}><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
                                     <li onClick={() => scrollToSection("notify")} className={activeSection === "notify" ? 'active' : ''}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
                                     <li onClick={() => scrollToSection("dock")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
+                                    <li onClick={() => scrollToSection("global")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faGlobe } /></i> Globalization</li>
                               </ul>
                               <div className="areaSettings" ref={areaSettingsRef}>
                                     <h2 ref={generalRef}><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
@@ -153,6 +125,10 @@
                                     <div className="subsection">
                                           <SettingsList area="dock" />
                                     </div>
+                                    <h2 ref={globalRef}><i><FontAwesomeIcon icon={ faGlobe } /></i> Globalization</h2>
+                                    <div className="subsection">
+                                          <SettingsList area="global" />
+                                    </div>                                    
                               </div>
                         </div>
                   </>

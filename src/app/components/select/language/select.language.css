@@ -1,0 +1,35 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Select Language
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Button
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+      
+      div.selectLanguage {
+            width             : 100%;
+            display           : flex;
+            align-items       : center;
+            gap               : 10px;
+      }
+
+      div.selectLanguage select,
+      div.selectLanguage button {
+            padding           : 8px 12px;
+            font-size         : 16px;
+            border            : 1px solid #ccc;
+            background-color  : #f0f0f0;
+            color             : #333;
+            cursor            : pointer;
+      }     
+
+      div.selectLanguage button {
+            border-radius     : 20px; 
+            border-color      : #007aff;
+            background-color  : #007aff;
+            color             : white; 
+            font-weight       : bold;
+      }
+
+

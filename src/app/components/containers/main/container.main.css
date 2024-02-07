@@ -15,7 +15,7 @@
 
       div.chatOverlay {
             background              : rgba(0,0,0, 0.7);
-            display                 : block;
+            display                 : flex;
             height                  : 100%;
       }
 
@@ -47,7 +47,9 @@
       main.closed div.users {
             width            : var(--width-users-closed);
       }
-
-      main.closed   div.users div.usersOverlay {
+      div.users div.usersOverlay {
+            height           : 100%;
+      }
+      main.closed div.usersOverlay {
             width            : var(--width-users-closed);
       }

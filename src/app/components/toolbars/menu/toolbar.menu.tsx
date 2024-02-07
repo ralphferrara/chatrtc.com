@@ -23,7 +23,8 @@
       //|| Redux User Sort
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { USER_SORT_ALPHA, USER_SORT_GENDER, USER_SORT_BROADCAST, USER_SORT_LEVEL, USER_SORT_DISTANCE }                  from '../../../../redux/types/panel.user.types';
-      import { setUserSortAlpha, setUserSortGender, setUserSortLevel, setUserSortDistance, setUserSortBroadcast }             from '../../../../redux/actions/panel.user.actions';
+      import { setUserSortAlpha, setUserSortGender, setUserSortLevel, setUserSortDistance, setUserSortBroadcasting }             from '../../../../redux/actions/panel.user.actions';
+      import { sortUsersByAlpha, sortUsersByGender, sortUsersByLevel, sortUsersByDistance, sortUsersByBroadcasting }             from '../../../../redux/actions/users.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux User Filter
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -86,11 +87,11 @@
             //|| Sort By Items
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const miSort            : MenuIconItem[] = [
-                  { title: 'Alphabetical',      icon: faSortAlphaUp,    value: 'name',    event: () => { dispatch(setUserSortAlpha()); }  },
-                  { title: 'Gender',            icon: faVenusMars,      value: 'status',  event: () => { dispatch(setUserSortGender()); }  },
-                  { title: 'User Level',        icon: faIdBadge,        value: 'level',   event: () => { dispatch(setUserSortLevel()); }  },
-                  { title: 'Broadcasting',      icon: faTv,             value: 'video',   event: () => { dispatch(setUserSortBroadcast()); }  },
-                  { title: 'Distance',          icon: faMap,            value: 'level',   event: () => { dispatch(setUserSortDistance()); }  }
+                  { title: 'Alphabetical',      icon: faSortAlphaUp,    value: 'name',    event: () => { dispatch(sortUsersByAlpha());          dispatch(setUserSortAlpha()) }  },
+                  { title: 'Gender',            icon: faVenusMars,      value: 'status',  event: () => { dispatch(sortUsersByGender());         dispatch(setUserSortGender()) }  },
+                  { title: 'User Level',        icon: faIdBadge,        value: 'level',   event: () => { dispatch(sortUsersByLevel());          dispatch(setUserSortLevel()); }  },
+                  { title: 'Broadcasting',      icon: faTv,             value: 'video',   event: () => { dispatch(sortUsersByBroadcasting());   dispatch(setUserSortBroadcasting()); }  },
+                  { title: 'Distance',          icon: faMap,            value: 'level',   event: () => { dispatch(sortUsersByDistance());       dispatch(setUserSortDistance()); }  },
             ];                
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| User Sort Class

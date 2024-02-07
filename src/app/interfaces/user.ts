@@ -8,7 +8,8 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       export default interface User {
-            age               : string;
+            age               : number;
+            age2?             : number;
             city              : string;
             certified         : boolean;
             distance          : number;

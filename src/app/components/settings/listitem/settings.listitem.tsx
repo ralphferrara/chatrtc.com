@@ -21,6 +21,7 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import ButtonToggle                 from '../../buttons/toggle/button.toggle';
       import SelectSound                  from '../../select/sound/select.sound';
+      import SelectLanguage               from '../../select/language/select.language';
       import SelectCSV                    from '../../select/csv/select.csv';
       import SliderStepper                from '../../slider/stepper/slider.stepper';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -91,6 +92,7 @@
                         case 'color':                 return <input type="color" defaultValue={ defaultValue } onChange={ ( event: React.ChangeEvent<HTMLInputElement> ) => handleSettingsChange(setting.name, event.target.value) } />;
                         case 'boolean' :              return <ButtonToggle id={ setting.name } value={ defaultValue } onChange={ ( newValue:boolean ) => handleSettingsChange(setting.name, newValue) } />;
                         case 'sound' :                return <SelectSound  id={ setting.name } defaultValue={ defaultValue } onChange={ handleSettingsChange } />;
+                        case 'language' :             return <SelectLanguage  id={ setting.name } defaultValue={ defaultValue } onChange={ handleSettingsChange } />;
                         default: return <input />;
                   }
             };            

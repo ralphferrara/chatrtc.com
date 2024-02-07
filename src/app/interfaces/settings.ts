@@ -22,6 +22,8 @@
             soundOnEnter            : string;
             soundOnLeave            : string;
             soundOnMessage          : string;
+            displayDistanceInKM     : boolean;
+            globalLanguage          : string;            
       }
       
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||

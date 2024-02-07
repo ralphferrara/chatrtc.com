@@ -18,8 +18,12 @@
       }
 
       main.closed .userListItem {
-            margin                  : 0 0;
-            padding                 : 2px 20px 10px;
+            display                 : flex;
+            margin                  : 0;
+            padding                 : 5px 0 15px;
+            width                   : calc(var(--width-users-closed) - 15px);
+            justify-content         : center;
+            align-items             : center;
       }
 
       main.closed .userListItem:hover {
@@ -36,6 +40,22 @@
             height                  : 35px;
             justify-content         : center;
             align-items             : center;
+      }
+
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| User Level
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      
+      .userListItem.gold { 
+            background              : rgba(255,215,0,0.1);
+      }
+
+      .userListItem.silver { 
+            background              : rgba(192,192,192,0.1);
+      }
+
+      .userListItem.bronze { 
+            background              : rgba(205,127,50,0.1);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -85,7 +105,21 @@
             overflow          : hidden;
             width             : 100%;
       }
+      
+      .userListItem .userInfo .distance { 
+            display           : none;
+      }
 
+      .userListItem .userInfo .distance span.imperial { 
+            display           : none;
+      }
+
+
+      .userListItem.open .userInfo .distance { 
+            display           : block;
+      }
+
+      .userInfo .distance,
       .userInfo .location { 
             font-size         : 1.0em;
             font-weight       : bold;
@@ -96,6 +130,9 @@
             overflow          : hidden;
       }
 
+      .userListItem.open .userInfo .location { 
+            display           : none;
+      }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Icons
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/

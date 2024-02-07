@@ -9,14 +9,13 @@
       
       .chatNotice {
             display           : block;
-            border            : 1px solid red;
-            background        : red;
-            color             : #FFF;
+            border            : 0;
+            background        : rgba(255, 255, 255, 0.8);
+            color             : #333;
             text-align        : center;
-            padding           : 5px 0;
+            padding           : 15px 0;
             font-size         : 0.9em;
             font-weight       : bold;
-            margin            : 10px 0 10px 0;
-            width             : 100%;
-            border-radius     : 20px;
+            margin            : 10px 10px;
+            width             : calc(100% - 20px);
       }

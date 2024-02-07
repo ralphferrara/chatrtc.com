@@ -60,18 +60,20 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const userGenderA = (user.gender.length === 1) ? user.gender : user.gender.charAt(0);
             const userGenderB = (user.gender.length === 1) ? 'NA'        : user.gender.charAt(1);            
+            const userLevelClass = (user.level >= 50) ? "gold" : (user.level >= 20) ? "silver" : (user.level >= 5) ? "bronze" : "";
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Component
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className={`userListItem ${isExpanded}`}>
+                  <div className={`userListItem ${isExpanded} ${userLevelClass}`}>
                         <div className="userImage" onClick={ handleExpanded }>
                               <img src={user.profile} alt={user.username} />
                         </div>
                         <div className="userInfo" onClick={ handleExpanded }>
                               <ul>
                                     <li className="username">{user.username}</li> 
-                                    <li className="location">{user.city}, {user.state} ({user.distance}mi)</li>
+                                    <li className="location">{user.city}, {user.state}</li>
+                                    <li className="distance">{user.distance}<span className="metric">km</span><span className="imperial">mi</span></li>
                               </ul>
                         </div>
                         <div className="userIcons" onClick={ handleExpanded }>                              
