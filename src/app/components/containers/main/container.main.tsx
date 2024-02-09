@@ -31,6 +31,7 @@
       import ChatList                                       from '../../chat/list/chat.list';
       import ChatListItem                                   from '../../chat/listitem/chat.listitem';
       import ChatNotice                                     from '../../chat/notice/chat.notice';
+      import ChatBot                                        from '../../chat/bot/chat.bot';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -67,6 +68,9 @@
             const panelUserIsOpen      = useAppSelector((state) => state.panelUser.isOpen);
             const isOpenModalUpload    = useAppSelector((state) => state.modals.modalUploadOpen);
             const isOpenModalSettings  = useAppSelector((state) => state.modals.modalSettingsOpen);
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Dispatch
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/            
             const dispatch             = useAppDispatch();
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Close Settings
@@ -92,6 +96,7 @@
                                           <ChatNotice notice={{ message: "Welcome to the chat room"}} />
                                           <ChatListItem message={ myMessages[0] }/>
                                           <ChatListItem message={ myMessages[1] }/>
+                                          <ChatBot bot={{ message: "Welcome to the chat room"}} />
                                     </ChatList>
                               </div>
                               <ToolbarChat />

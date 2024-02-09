@@ -20,7 +20,7 @@
             cursor            : pointer;
             width             : 60px;
             height            : 30px;
-            background        : #BBB;
+            background        : var(--color-bg-input);
             border-radius     : 100px;
             position          : relative;
             transition        : background-color .2s;
@@ -35,12 +35,12 @@
             height            : 25px;
             border-radius     : 25px;
             transition        : 0.2s;
-            background        : #fff;
+            background        : var(--color-bg);
             box-shadow        : 0 0 2px 0 rgba(10, 10, 10, 0.29);
       }
 
       .buttonToggle:checked + .buttonToggleLabel {
-            background        : var(--color-hover-bg);
+            background        : var(--color-bg-hover);
       }
 
       .buttonToggle:checked + .buttonToggleLabel .buttonToggleButton {

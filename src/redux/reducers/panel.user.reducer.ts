@@ -10,8 +10,8 @@
       import { PANEL_USER_OPEN, PANEL_USER_CLOSE }                              from '../types/panel.user.types';
       import { USER_STATUS_ACTIVE, USER_STATUS_INACTIVE, USER_STATUS_AWAY }     from '../types/panel.user.types';
       import { USER_SORT_ALPHA, USER_SORT_GENDER, USER_SORT_BROADCAST, USER_SORT_LEVEL, USER_SORT_DISTANCE }      from '../types/panel.user.types';
-      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS } from '../types/panel.user.types';
-      import { USER_SEARCH_TERM, USER_SEARCH_STATUS }                           from '../types/panel.user.types';
+      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, USER_FILTER_BROADCASTING } from '../types/panel.user.types';
+      import { USER_SEARCH_TERM }                                               from '../types/panel.user.types';
       import { SETTINGS_MODAL_OPEN, SETTINGS_MODAL_CLOSE }                      from '../types/panel.user.types';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Initial State
@@ -90,15 +90,15 @@
                   case USER_FILTER_VIEWERS:
                         console.log('User Filter: Viewers');
                         return { ...state, filter: USER_FILTER_VIEWERS };                        
+                  case USER_FILTER_BROADCASTING:
+                        console.log('User Filter: Broadcasting');
+                        return { ...state, filter: USER_FILTER_BROADCASTING };                        
                   /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
                   //|| Search
                   //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   case USER_SEARCH_TERM:
                         console.log('Search Term Set');
                         return { ...state, searchTerm: action.payload };
-                  case USER_SEARCH_STATUS:
-                        console.log('Search Status Set');
-                        return { ...state, searchStatus: action.payload };                        
                   /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
                   //|| Panel
                   //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/

@@ -15,7 +15,49 @@
             overflow-x        : hidden;
       }
 
+      div.userList h2.filterHeader {
+            padding           : 10px 20px;
+            background        : var(--color-bg-highlight);
+            margin            : 0 0 10px 0;
+            position          : relative;
+            font-size         : 0.8em;
+      }
+      div.userList h2.filterHeader b {
+            font-weight       : bold;
+            color             : var(--color-text);
+      }
+      div.userList h2.filterHeader span {
+            position          : absolute;
+            right             : 10px;
+            top               : 10px;;
+            font-size         : 1.2em;
+            cursor            : pointer;
+      }
 
       main.closed div.userList {
             width             : var(--width-users-closed);
+      }
+
+      .blur-div {
+            filter            : blur(5px);
+
+      }
+
+      div.empty { 
+            display           : flex;
+            justify-content   : center;
+            align-items       : center;
+            font-size         : 0.8em;
+            color             : var(--color-text-light);
+            padding           : 20px 0;     
+            cursor            : pointer;       
+      }
+
+      div.empty span {
+            font-size         : 1em;
+            padding           : 5px 5px;
+            display           : inline-block;
+            border-radius     : 50%;
+            background        : var(--color-bg-light);
+            margin            : 0 10px;
       }

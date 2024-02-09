@@ -21,7 +21,7 @@
       }
 
       div.modalOverlay div.modalWindow {
-            background              : #FFF;
+            background              : var(--color-bg); 
             border                  : 2px solid var(--color-border-heavy);
             border-radius           : 10px;
             padding                 : 20px;

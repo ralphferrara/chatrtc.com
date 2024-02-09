@@ -13,7 +13,7 @@
             right                   : 0;
             width                   : var(--width-users);
             height                  : var(--height-toolbar);
-            background              : #fff;
+            background              : var(--color-bg);
             padding                 : 0;
             margin                  : 0;         
             background              : var(--color-bg); 
@@ -39,5 +39,5 @@
       }
 
       div.toolbarMenu button.icon.selected {
-            color                   : var(--color-inactive-bg);
+            color                   : var(--color-bg-inactive);
       }

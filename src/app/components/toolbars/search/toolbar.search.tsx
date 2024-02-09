@@ -6,7 +6,7 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, { useEffect }                           from 'react';
+      import React                                          from 'react';
       import { useAppDispatch, useAppSelector }             from '../../../../redux/store';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
@@ -14,14 +14,11 @@
       import { FontAwesomeIcon }                            from '@fortawesome/react-fontawesome';
       import { faTimes, faSearch }                          from '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-      //|| Components
-      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import Loader                                         from '../../loader/spinner/loader.spinner';
-      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux User Filter
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { setUserSearchTerm, setUserSearchStatus }     from '../../../../redux/actions/panel.user.actions';
-      import { openPanellUsers }                             from '../../../../redux/actions/panel.user.actions';
+      import { setUserSearchTerm }                          from '../../../../redux/actions/panel.user.actions';
+      import { setUserFilterAll }                           from '../../../../redux/actions/panel.user.actions';
+      import { openPanellUsers }                            from '../../../../redux/actions/panel.user.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
@@ -34,8 +31,6 @@
             //|| Search Term and Status
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const searchTerm       = useAppSelector((state) => state.panelUser.searchTerm);                        
-            const searchStatus     = useAppSelector((state) => state.panelUser.searchStatus);   
-            const panelUserOpen    = useAppSelector((state) => state.panelUser.isOpen);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Dispatch
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -45,35 +40,13 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
                   dispatch(setUserSearchTerm(event.target.value));
-                  dispatch(setUserSearchStatus("wait"));
             };    
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Monitor the Output
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            useEffect(() => {
-                  const delaySearch = setTimeout(() => {
-                        dispatch(setUserSearchStatus("search"));
-                  }, 2000);
-                  return () => {
-                      clearTimeout(delaySearch);
-                  };
-            }, [searchTerm, dispatch]);
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Monitor the Output
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            useEffect(() => {
-                  if (searchStatus === "search") {
-                        //TODO: Handle Search
-                        console.log("Search Term: " + searchTerm);
-                        dispatch(setUserSearchStatus("off"));
-                  }
-            }, [searchStatus, dispatch, searchTerm]);            
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Monitor the Output
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const clearSearchTerm   = () => {
                   dispatch(setUserSearchTerm(''));
-                  dispatch(setUserSearchStatus("off"));
+                  dispatch(setUserFilterAll());
             };    
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Monitor the Output
@@ -93,10 +66,8 @@
                         <div className="toolbarSearchWrapper">
                               <button className="buttonSearch"><FontAwesomeIcon icon={ faSearch } onClick={ handleButtonSearchClick } /></button>
                               <input type="text" name="search" value={ searchTerm } onChange={ handleInputChange } id="toolbarSearchInput" />
-                              <Loader visible={ (panelUserOpen && (searchStatus === "wait" || searchStatus === "search")) } />
                               <button className="buttonClear"><FontAwesomeIcon onClick={ clearSearchTerm } icon={ faTimes } /></button>
                         </div>
-                        <p>{ (panelUserOpen && (searchStatus === "off" && searchTerm !== "")) ? "Searched for : " + searchTerm : "" }</p>                        
                   </div>      
             );
       };

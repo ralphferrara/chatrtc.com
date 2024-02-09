@@ -20,36 +20,38 @@
       }
 
       main div.main {
-            position         : fixed;
-            top              : 0;   
-            left             : 0;
-            bottom           : var(--height-toolbar);
-            width            : var(--width-main);
-            background       : url(/public/img/backgrounds/background.jpg) no-repeat center center;
-            background-size  : cover; 
+            position                : fixed;
+            top                     : 0;   
+            left                    : 0;
+            bottom                  : var(--height-toolbar);
+            width                   : var(--width-main);
+            background              : url(/public/img/backgrounds/background.jpg) no-repeat center center;
+            background-size         : cover; 
       }
 
       main div.users {
-            position         : fixed;
-            top              : 0;   
-            bottom           : var(--height-toolbar);
-            right            : 0;
-            width            : var(--width-users);
-            overflow-y       : auto;
-            background-size  : cover;
-            background       : #FFF;
+            position                : fixed;
+            top                     : 0;   
+            bottom                  : var(--height-toolbar);
+            right                   : 0;
+            width                   : var(--width-users);
+            overflow-y              : auto;
+            background-size         : cover;
+            background              : var(--color-bg);
       }
 
       main.closed div.main {
-            width            : var(--width-main-closed);
+            width                   : var(--width-main-closed);
       }
 
       main.closed div.users {
-            width            : var(--width-users-closed);
+            width                   : var(--width-users-closed);
       }
+      
       div.users div.usersOverlay {
-            height           : 100%;
+            height                  : 100%;
       }
+
       main.closed div.usersOverlay {
-            width            : var(--width-users-closed);
+            width                   : var(--width-users-closed);
       }

@@ -45,6 +45,7 @@
                         case 'general': sectionRef = generalRef; break;
                         case 'dock'   : sectionRef = dockRef;    break;
                         case 'notify' : sectionRef = notificationsRef; break;
+                        case 'global' : sectionRef = globalRef; break;
                         default: return;
                   }
                   if (sectionRef && sectionRef.current) {
@@ -69,7 +70,8 @@
                   const sectionRefs = [
                         { title: 'general',           ref: generalRef },
                         { title: 'dock',              ref: dockRef },
-                        { title: 'notify',            ref: notificationsRef }
+                        { title: 'notify',            ref: notificationsRef },
+                        { title: 'global',            ref: globalRef }                        
                   ];              
                   /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
                   //|| Current Section
@@ -110,7 +112,7 @@
                                     <li onClick={() => scrollToSection("general")} className={activeSection === "general" ? 'active' : ''}><i><FontAwesomeIcon icon={ faCog } /></i> General</li>
                                     <li onClick={() => scrollToSection("notify")} className={activeSection === "notify" ? 'active' : ''}><i><FontAwesomeIcon icon={ faBell } /></i> Notifications</li>
                                     <li onClick={() => scrollToSection("dock")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faAnchor } /></i> Dock</li>
-                                    <li onClick={() => scrollToSection("global")} className={activeSection === "dock" ? 'active' : ''}><i><FontAwesomeIcon icon={ faGlobe } /></i> Globalization</li>
+                                    <li onClick={() => scrollToSection("global")} className={activeSection === "global" ? 'active' : ''}><i><FontAwesomeIcon icon={ faGlobe } /></i> Globalization</li>
                               </ul>
                               <div className="areaSettings" ref={areaSettingsRef}>
                                     <h2 ref={generalRef}><i><FontAwesomeIcon icon={ faCog } /></i> General</h2>
@@ -128,7 +130,8 @@
                                     <h2 ref={globalRef}><i><FontAwesomeIcon icon={ faGlobe } /></i> Globalization</h2>
                                     <div className="subsection">
                                           <SettingsList area="global" />
-                                    </div>                                    
+                                    </div>   
+                                    <div className="fillAbove"></div>
                               </div>
                         </div>
                   </>

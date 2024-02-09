@@ -77,18 +77,18 @@
                               </ul>
                         </div>
                         <div className="userIcons" onClick={ handleExpanded }>                              
-                              <i className="age">{user.age}</i>
+                              <i title="Age" className="age">{user.age}</i>
                               <i className={ (user.certified) ? "certified" : "notCertified" }><FontAwesomeIcon icon={faCertificate} /></i>
-                              <i className={ userGenderA }><FontAwesomeIcon icon={faUser} /></i>
-                              <i className={ userGenderB }><FontAwesomeIcon icon={faUser} /></i>
-                              <i className={ user.status }>
-                                    <FontAwesomeIcon className="active" icon={faCircle} />
-                                    <FontAwesomeIcon className="away"  icon={faMoon} />
-                                    <FontAwesomeIcon className="idle"  icon={faHourglassHalf} />
+                              <i title="gender" className={ userGenderA }><FontAwesomeIcon icon={faUser} /></i>
+                              <i title="gender"className={ userGenderB }><FontAwesomeIcon icon={faUser} /></i>
+                              <i title="status" className={ user.status }>
+                                    <FontAwesomeIcon title="Active" className="active" icon={faCircle} />
+                                    <FontAwesomeIcon title="Away" className="away"  icon={faMoon} />
+                                    <FontAwesomeIcon title="Idle" className="idle"  icon={faHourglassHalf} />
                               </i>
                         </div>
                         <div className="userButtons">
-                              {user.isBroadcasting && <button className="viewCamera"><FontAwesomeIcon icon={ faVideo } /></button>}
+                              {user.isBroadcasting && <button className="viewCamera"><FontAwesomeIcon title="View Webcam" icon={ faVideo } /></button>}
                               {!user.isBroadcasting && <button onClick={ handleExpanded }></button>}
                               
                         </div>

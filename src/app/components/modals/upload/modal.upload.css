@@ -29,8 +29,8 @@ div.modalWindow.upload div.uploadBox p.drop {
             
 div.modalWindow.upload div.uploadBox p.drag {
       font-size         : 2em;
-      background        : var(--color-inactive-bg);
-      color             : #FFF;
+      background        : var(--color-bg-inactive);
+      color             : var(--color-text-hover);
 }
 
 div.modalWindow.upload div.uploadBox ul:empty {
@@ -64,7 +64,7 @@ div.modalWindow.upload div.uploadBox ul li i {
       border-radius     : 50%;
       padding           : 7px 10px;   
       background        : var(--color-text-light);
-      color             : #FFF;
+      color             : var(--color-text-hover);
 }
 
 /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||

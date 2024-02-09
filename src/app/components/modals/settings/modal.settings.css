@@ -33,12 +33,12 @@
       }
 
       ul.menuSettings li.active {
-            background-color        : var(--color-hover-bg);
+            background-color        : var(--color-bg-hover);
             color                   : white;
       }      
 
       ul.menuSettings li.active i {
-            color                   : #FFF;
+            color                   : var(--color-text-hover);
       }
 
       ul.menuSettings li i {
@@ -50,13 +50,13 @@
       }
 
       ul.menuSettings li:hover {
-            background              : var(--color-hover-bg);
+            background              : var(--color-bg-hover);
             opacity                 : 0.8;
-            color                   : #FFF;
+            color                   : var(--color-text-hover);
       }
 
       ul.menuSettings li:hover i {
-            color                   : #FFF;
+            color                   : var(--color-text-hover);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -87,7 +87,7 @@
             margin                  : 0;
             padding                 : 0 0 50px 0;
             border-bottom           : 1px solid var(--color-border-light);
-            background              : #F5F5F5;
+            background              : var(--color-bg-light);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -98,5 +98,10 @@
             display                 : block;
             margin                  : 0;
             padding                 : 20px 20px;
+            border-bottom           : 1px solid #CCC;
+      }
+      
+      div.fillAbove {
+            padding                 : 0 0 80% 0;
             border-bottom           : 1px solid #CCC;
       }

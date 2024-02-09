@@ -17,6 +17,7 @@
       import { SettingsReducer }                                  from '../redux/reducers/settings.reducer';
       import { ModalReducer }                                     from '../redux/reducers/modal.reducer';
       import { UsersReducer }                                     from '../redux/reducers/users.reducer';
+      import { MeReducer }                                        from '../redux/reducers/me.reducer';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
@@ -26,6 +27,7 @@
             "menuIcon"            : MenuIconReducer,  
             "modals"              : ModalReducer,
             "users"               : UsersReducer, 
+            "me"                  : MeReducer, 
       });
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer

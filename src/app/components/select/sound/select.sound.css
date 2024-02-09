@@ -18,17 +18,17 @@
       div.selectSound button {
             padding           : 8px 12px;
             font-size         : 16px;
-            border            : 1px solid #ccc;
-            background-color  : #f0f0f0;
-            color             : #333;
+            border            : 1px solid var(--color-primary);
+            background-color  : var(--color-bg);
+            color             : var(--color-text-secondary);
             cursor            : pointer;
       }     
 
       div.selectSound button {
             border-radius     : 20px; 
-            border-color      : #007aff;
-            background-color  : #007aff;
-            color             : white; 
+            border            : none;
+            background-color  : var(--color-primary);
+            color             : var(--color-text-primary); 
             font-weight       : bold;
       }
 

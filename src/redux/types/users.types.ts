@@ -29,7 +29,7 @@
       interface FetchUsersSuccessAction               { type: typeof FETCH_USERS_SUCCESS; payload: User[]; }
       interface FetchUsersFailureAction               { type: typeof FETCH_USERS_FAILURE; payload: string; }
       interface AddUserAction                         { type: typeof ADD_USER; payload: User; }
-      interface RemoveUserAction                      { type: typeof REMOVE_USER; payload: string; }
+      interface RemoveUserAction                      { type: typeof REMOVE_USER; payload: number; }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Interfaces - List Sorting Actions
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/

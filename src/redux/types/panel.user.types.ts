@@ -6,40 +6,40 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| States
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const PANEL_USER_OPEN        = 'PANEL_USER_OPEN';
-      export const PANEL_USER_CLOSE       = 'PANEL_USER_CLOSE';
+      export const PANEL_USER_OPEN              = 'PANEL_USER_OPEN';
+      export const PANEL_USER_CLOSE             = 'PANEL_USER_CLOSE';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Status
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const USER_STATUS_ACTIVE     = 'USER_STATUS_ACTIVE';
-      export const USER_STATUS_INACTIVE   = 'USER_STATUS_INACTIVE';
-      export const USER_STATUS_AWAY       = 'USER_STATUS_AWAY';
+      export const USER_STATUS_ACTIVE           = 'USER_STATUS_ACTIVE';
+      export const USER_STATUS_INACTIVE         = 'USER_STATUS_INACTIVE';
+      export const USER_STATUS_AWAY             = 'USER_STATUS_AWAY';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Sort
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const USER_SORT_ALPHA        = 'USER_SORT_NAME';
-      export const USER_SORT_GENDER       = 'USER_SORT_GENDER';
-      export const USER_SORT_LEVEL        = 'USER_SORT_LEVEL';
-      export const USER_SORT_BROADCAST    = 'USER_SORT_BROADCAST';
-      export const USER_SORT_DISTANCE     = 'USER_SORT_DISTANCE';
+      export const USER_SORT_ALPHA              = 'USER_SORT_NAME';
+      export const USER_SORT_GENDER             = 'USER_SORT_GENDER';
+      export const USER_SORT_LEVEL              = 'USER_SORT_LEVEL';
+      export const USER_SORT_BROADCAST          = 'USER_SORT_BROADCAST';
+      export const USER_SORT_DISTANCE           = 'USER_SORT_DISTANCE';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Filter
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const USER_FILTER_ALL        = 'USER_FILTER_ALL';
-      export const USER_FILTER_MODS       = 'USER_FILTER_MODS';
-      export const USER_FILTER_FRIENDS    = 'USER_FILTER_FRIENDS';
-      export const USER_FILTER_BLOCKED    = 'USER_FILTER_BLOCKED'; 
-      export const USER_FILTER_VIEWERS    = 'USER_FILTER_VIEWERS';
+      export const USER_FILTER_ALL              = 'USER_FILTER_ALL';
+      export const USER_FILTER_MODS             = 'USER_FILTER_MODS';
+      export const USER_FILTER_FRIENDS          = 'USER_FILTER_FRIENDS';
+      export const USER_FILTER_BLOCKED          = 'USER_FILTER_BLOCKED'; 
+      export const USER_FILTER_VIEWERS          = 'USER_FILTER_VIEWERS';
+      export const USER_FILTER_BROADCASTING     = 'USER_FILTER_BROADCASTING';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Search Toolbar
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const USER_SEARCH_TERM        = 'USER_SEARCH_TERM'; 
-      export const USER_SEARCH_STATUS      = 'USER_SEARCH_STATUS';
+      export const USER_SEARCH_TERM             = 'USER_SEARCH_TERM'; 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Settings Modal
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const SETTINGS_MODAL_OPEN     = 'SETTINGS_MODAL_OPEN';
-      export const SETTINGS_MODAL_CLOSE    = 'SETTINGS_MODAL_CLOSE';
+      export const SETTINGS_MODAL_OPEN          = 'SETTINGS_MODAL_OPEN';
+      export const SETTINGS_MODAL_CLOSE         = 'SETTINGS_MODAL_CLOSE';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Action Types
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -101,15 +101,15 @@
       export interface UserFilterViewers {
             type: typeof USER_FILTER_VIEWERS;
       }
+
+      export interface UserFilterBroadcasting {
+            type: typeof USER_FILTER_BROADCASTING;
+      }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Search Action Types
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       export interface UserSearchTerm {
             type: typeof USER_SEARCH_TERM;
-            payload: string;
-      }
-      export interface UserSearchStatus {
-            type: typeof USER_SEARCH_STATUS;
             payload: string;
       }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -127,8 +127,8 @@
       export type PanelUserActionTypes        = PanelUserOpenAction | PanelUserCloseAction | 
                                                 UserStatusActive | UserStatusInactive | UserStatusAway    | 
                                                 UserSortAlpha    | UserSortGender     | UserSortLevel     | UserSortBroadcast | UserSortDistance  |
-                                                UserFilterAll    | UserFilterMods     | UserFilterFriends | UserFilterBlocked | UserFilterViewers | 
-                                                UserSearchTerm   | UserSearchStatus   | 
+                                                UserFilterAll    | UserFilterMods     | UserFilterFriends | UserFilterBlocked | UserFilterViewers | UserFilterBroadcasting |
+                                                UserSearchTerm   | 
                                                 ModalSettingsOpenAction | ModalSettingsCloseAction;
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Panel State

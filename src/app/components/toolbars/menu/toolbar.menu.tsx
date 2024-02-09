@@ -23,13 +23,13 @@
       //|| Redux User Sort
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { USER_SORT_ALPHA, USER_SORT_GENDER, USER_SORT_BROADCAST, USER_SORT_LEVEL, USER_SORT_DISTANCE }                  from '../../../../redux/types/panel.user.types';
-      import { setUserSortAlpha, setUserSortGender, setUserSortLevel, setUserSortDistance, setUserSortBroadcasting }             from '../../../../redux/actions/panel.user.actions';
-      import { sortUsersByAlpha, sortUsersByGender, sortUsersByLevel, sortUsersByDistance, sortUsersByBroadcasting }             from '../../../../redux/actions/users.actions';
+      import { setUserSortAlpha, setUserSortGender, setUserSortLevel, setUserSortDistance, setUserSortBroadcasting }          from '../../../../redux/actions/panel.user.actions';
+      import { sortUsersByAlpha, sortUsersByGender, sortUsersByLevel, sortUsersByDistance, sortUsersByBroadcasting }          from '../../../../redux/actions/users.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux User Filter
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS }             from '../../../../redux/types/panel.user.types';
-      import { setUserFilterAll, setUserFilterMods, setUserFilterBlocked, setUserFilterFriends, setUserFilterViewers }        from '../../../../redux/actions/panel.user.actions';
+      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, USER_FILTER_BROADCASTING }        from '../../../../redux/types/panel.user.types';
+      import { setUserFilterAll, setUserFilterMods, setUserFilterBlocked, setUserFilterFriends, setUserFilterViewers, setUserFilterBroadcasting }  from '../../../../redux/actions/panel.user.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Menu
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -71,7 +71,6 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const miStatus          : MenuIconItem[] = [
                   { title: 'Active',      icon: faCircle,    value: 'active',   event: () => { dispatch(setUserStatusActive()); }  },
-                  { title: 'Inactive',    icon: faHourglass, value: 'inactive', event: () => { dispatch(setUserStatusInactive()); }    },
                   { title: 'Away',        icon: faMoon,      value: 'away',     event: () => { dispatch(setUserStatusAway()); }   }
             ];
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -122,17 +121,19 @@
                   { title: 'Friends',      icon: faUserFriends,   value: 'name',    event: () => {  dispatch(setUserFilterFriends()); }  },
                   { title: 'Blocked',      icon: faPoo,           value: 'name',    event: () => {  dispatch(setUserFilterBlocked()); }  },
                   { title: 'Viewers',      icon: faEye,           value: 'date',    event: () => {  dispatch(setUserFilterViewers()); }  },
+                  { title: 'Broadcasting', icon: faTv,            value: 'date',    event: () => {  dispatch(setUserFilterBroadcasting()); }  },
             ];      
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Filter By 
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             let userFilter = { 'icon' : faUsers, 'class' : 'all' };
             switch(panelUserFilter) {
-                  case USER_FILTER_ALL          : userFilter = { 'icon' : faUsers,        'class'     : 'all' };        break;
-                  case USER_FILTER_MODS         : userFilter = { 'icon' : faUserShield,   'class'     : 'mods' };       break;
-                  case USER_FILTER_FRIENDS      : userFilter = { 'icon' : faUserFriends,  'class'     : 'friends' };    break;
-                  case USER_FILTER_BLOCKED      : userFilter = { 'icon' : faPoo,          'class'     : 'blocked' };    break;
-                  case USER_FILTER_VIEWERS      : userFilter = { 'icon' : faEye,          'class'     : 'viewers' };    break;
+                  case USER_FILTER_ALL          : userFilter = { 'icon' : faUsers,        'class'     : 'all' };              break;
+                  case USER_FILTER_MODS         : userFilter = { 'icon' : faUserShield,   'class'     : 'mods' };             break;
+                  case USER_FILTER_FRIENDS      : userFilter = { 'icon' : faUserFriends,  'class'     : 'friends' };          break;
+                  case USER_FILTER_BLOCKED      : userFilter = { 'icon' : faPoo,          'class'     : 'blocked' };          break;
+                  case USER_FILTER_VIEWERS      : userFilter = { 'icon' : faEye,          'class'     : 'viewers' };          break;
+                  case USER_FILTER_BROADCASTING : userFilter = { 'icon' : faTv,           'class'     : 'broadcasting' };     break;
             }
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Sort By Items

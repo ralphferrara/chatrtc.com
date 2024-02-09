@@ -13,7 +13,7 @@
             left                    : 0;
             width                   : var(--width-main);
             height                  : var(--height-toolbar);
-            background              : #fff;
+            background              : var(--color-bg);
             padding                 : 0;
             margin                  : 0;         
       }
@@ -35,7 +35,7 @@
             bottom                  : calc(var(--height-toolbar) + 20px);
             right                   : calc(var(--width-users)  + 100px); 
             left                    : 100px;
-            color                   : #FFF;
+            color                   : var(--color-text-primary);
             grid-template-columns   : 50px auto 50px;            
             gap                     : 0;
             padding                 : 10px 10px;
@@ -48,7 +48,7 @@
             vertical-align          : middle;
             text-align              : center;
             margin                  : 0;
-            color                   : #FFF;
+            color                   : var(--color-text-primary);
             font-size               : 150%;            
       }
 
@@ -68,18 +68,18 @@
             cursor                  : pointer;
             border                  : 0;
             background              : transparent;
-            color                   : #FFF;
+            color                   : var(--color-text-primary);
             font-size               : 150%;
       }
 
       div.toolbarSendBox.whisper div.sendTo.whisper {
             display                 : grid;
-            background              : var(--color-whisper-bg);
+            background              : var(--color-bg-whisper);
       }
 
       div.toolbarSendBox.direct div.sendTo.direct {
             display                 : grid;
-            background              : var(--color-direct-bg);
+            background              : var(--color-bg-direct);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -105,7 +105,7 @@
       }
 
       div.toolbarSendText textarea::-webkit-input-placeholder {
-            color                   : #CCC;
+            color                   : var(--color-text-light);
             padding                 : 20px 0;
       }
 

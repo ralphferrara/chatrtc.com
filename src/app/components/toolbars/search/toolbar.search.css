@@ -15,7 +15,7 @@
             text-align  : center;
             font-size   : 0.9em;
             display     : block;
-            color       : #999;
+            color       : var(--color-text-light);
             padding     : 10px 0 0 0;
             font-style  : italic;
       }
@@ -26,7 +26,7 @@
             justify-content   : space-between;
             align-items       : center;
             height            : 50px;
-            background        : #FFF;
+            background        : var(--color-bg);
             border            : 2px solid var(--color-border-heavy);
             border-radius     : 20px;
       }
@@ -37,7 +37,7 @@
             color             : var(--color-text-light);
             width             : 12%;
             height            : 100%;
-            background        : #FFF;
+            background        : var(--color-bg);
             font-size         : 1.0em;
             cursor            : pointer;
             border-radius     : 50%;

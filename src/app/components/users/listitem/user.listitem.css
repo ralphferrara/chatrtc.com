@@ -11,10 +11,10 @@
             display                 : grid;
             align-items             : center;
             grid-template-columns   : 50px 150px 1fr 60px;
-            margin                  : 4px 10px 0;
-            background              : rgba(255,255,255,0.9);
+            margin                  : 0 0;
             cursor                  : pointer;
-            padding                 : 3px 5px;
+            padding                 : 4px 10px;
+            border-left             : 5px solid transparent;
       }
 
       main.closed .userListItem {
@@ -27,13 +27,11 @@
       }
 
       main.closed .userListItem:hover {
-            background              : var(--color-hover-bg);
+            background              : var(--color-bg-hover);
       }
 
-
       .userListItem.open {
-
-            grid-template-columns   : 50px 150px 1fr;
+            grid-template-columns   : 150px 1fr;
       }
 
       .userListItem div { 
@@ -47,20 +45,29 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       
       .userListItem.gold { 
-            background              : rgba(255,215,0,0.1);
+            border-left            : 5px solid var(--color-spec-mod-admin);
       }
 
       .userListItem.silver { 
-            background              : rgba(192,192,192,0.1);
+            border-left            : 5px solid var(--color-spec-mod-mod);
       }
 
       .userListItem.bronze { 
-            background              : rgba(205,127,50,0.1);
+            border-left            : 5px solid var(--color-spec-mod-helper);
+      }
+
+      .userListItem.open { 
+            border-left            : 5px solid black;
+            background             : rgba(0,0,0,0.03);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Image
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+
+      .userListItem.open .userImage {
+            display           : none;
+      }
 
       .userListItem .userImage {
             padding           : 0;
@@ -82,6 +89,10 @@
             width             : 100%;
       }
 
+      .userListItem.open .userInfo { 
+            padding           : 3px 0 3px 10px;            
+      }
+
       .userInfo ul {
             padding-top       : 2px;
             max-width         : 100%;
@@ -92,15 +103,16 @@
             display           : flex;
             text-align        : left;
             vertical-align    : top;
-            max-height        : 1.2em;
-            line-height       : 1.2em;
+            max-height        : 1.3em;
+            line-height       : 1.3em;
             overflow-x        : hidden;
+            padding-top       : 4px;
       }
 
       .userInfo .username { 
-            font-size         : 1.1em;
+            font-size         : 0.9em;
             font-weight       : bold;
-            color             : #333;
+            color             : var(--color-text);
             text-decoration   : none;
             overflow          : hidden;
             width             : 100%;
@@ -121,18 +133,19 @@
 
       .userInfo .distance,
       .userInfo .location { 
-            font-size         : 1.0em;
-            font-weight       : bold;
-            color             : rgba(100,100,100,0.4);
+            font-size         : 0.8em;
+            font-weight       : normal;
+            color             : var(--color-text-secondary);
             text-decoration   : none;
             width             : 100%;
-            max-height        : 1.4em;
+            max-height        : 1.5em;
             overflow          : hidden;
       }
 
       .userListItem.open .userInfo .location { 
             display           : none;
       }
+
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| User Icons
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -152,14 +165,14 @@
             justify-content         : center;
             align-items             : center;
             font-size               : 0.9em;
-            color                   : #999;  
+            color                   : var(--color-text-light);  
             margin                  : 6px 0;    
       }
 
       .userListItem div.userIcons i.age { 
             font-size               : 0.9em;
             font-weight             : bold;
-            color                   : #999;
+            color                   : var(--color-text-light);  
             background              : rgba(0,0,0,0.01);  
       }
 
@@ -172,7 +185,7 @@
             justify-content         : center;
             align-items             : center;
             font-size               : 1.2em;
-            color                   : #999;      
+            color                   : var(--color-text-light);
       }
             
       .userListItem.open div.userButtons { 
@@ -188,8 +201,8 @@
       }
 
       .userButtons button.viewCamera {
-            background-color        : var(--color-hover-bg);
-            color                   : white;
+            background-color        : var(--color-bg-hover);
+            color                   : var(--color-text-hover);
             padding                 : 0px 15px;
             border                  : none;
             border-radius           : 5px;
@@ -226,15 +239,15 @@
       }
       .userListItem .userIcons i.active .active{
             display                : block;
-            color                  : green;
+            color                  : var(--color-spec-status-active);
       }
       .userListItem .userIcons i.idle .idle{
             display                : block;
-            color                  : gray;
+            color                  : var(--color-spec-status-idle);
       }
       .userListItem .userIcons i.away .away{
             display                 : block;
-            color                   : darkblue;
+            color                   : var(--color-spec-status-away);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -242,16 +255,16 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       .userListItem .userIcons i.M {
-            color                   : #00F;
+            color                   : var(--color-spec-gender-m);
       }
       .userListItem .userIcons i.F {
-            color                   : #F0F;
+            color                   : var(--color-spec-gender-m);
       }
       .userListItem .userIcons i.T {
-            color                   : purple;
+            color                   : var(--color-spec-gender-t);
       }
       .userListItem .userIcons i.O {
-            color                   : red;
+            color                   : var(--color-spec-gender-t);
       }
       .userListItem .userIcons i.NA {
             color                   : transparent;
@@ -265,7 +278,7 @@
             color                   : transparent;
       }
       .userListItem .userIcons i.certified {
-            color                  : gold;
+            color                  : var(--color-spec-certified);
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -275,15 +288,15 @@
       main.closed .userIcons, 
       main.closed .userButtons, 
       main.closed .userInfo {  
-            display           : none;
+            display                 : none;
       }
 
       main.closed .userListItem .userImage {
-            justify-content  : center;
-            padding          : 4px;
+            justify-content         : center;
+            padding                 : 4px;
       }
 
       main.closed .userListItem .userImage img {
-            width            : 35px;
-            height           : 35px;
+            width                   : 35px;
+            height                  : 35px;
       }

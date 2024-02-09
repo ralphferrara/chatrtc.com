@@ -17,7 +17,7 @@
 
       .sliderStepper button {
             background-color  : rgba(0, 0, 0, 0.05);
-            color             : #000;
+            color             : var(color-text);
             border            : 0;
             border-radius     : 5px;
             padding           : 5px 15px;
@@ -28,7 +28,7 @@
       }
 
       .sliderStepper button:hover {
-            background-color  : #e0e0ea;
+            background-color  : var(--color-bg-hover);
       }
 
       .sliderStepper input {
@@ -47,8 +47,8 @@
             width             : 10px;
             height            : 20px;
             border-radius     : 2px;
-            background        : #fff;
-            border            : 1px solid #d1d1d6;
+            background        : var(--color-bg);
+            border            : 1px solid var(--color-border-light);
             cursor            : pointer;
             transition        : transform 0.3s ease-in-out;
       }

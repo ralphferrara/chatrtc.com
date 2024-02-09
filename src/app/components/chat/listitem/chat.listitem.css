@@ -8,22 +8,22 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       
       div.chatItem {
-            display               : grid;
-            flex-direction        : row;
-            align-items           : center;
-            padding               : 10px;
-            margin                : 5px 10px;
-            width                 : calc(100% - 20px);
-            grid-template-columns : 50px 1fr 100px;    
-            vertical-align        : top;   
-            border-radius         : 10px;
+            display                 : grid;
+            flex-direction          : row;
+            align-items             : center;
+            padding                 : 10px;
+            margin                  : 5px 10px;
+            width                   : calc(100% - 20px);
+            grid-template-columns   : 50px 1fr 100px;    
+            vertical-align          : top;   
+            border-radius           : 10px;
       } 
 
       div.chatItem div {
-            vertical-align        : top; 
-            min-height            : 40px; 
-            justify-content       : top;
-            align-items           : top;
+            vertical-align          : top; 
+            min-height              : 40px; 
+            justify-content         : top;
+            align-items             : top;
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -31,19 +31,18 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       div.chatItem div.image {
-            display               : flex;
-            flex-direction        : column;
-            align-items           : center;
-            justify-content       : center;
-            padding               : 0 10px;
+            display                 : flex;
+            flex-direction          : column;
+            align-items             : center;
+            justify-content         : center;
+            padding                 : 0 10px;
       }
 
       div.chatItem img.profile {
-            width                 : 35px;
-            height                : 35px;
-            border-radius         : 50%;  
-            border                : 2px solid #FFF;
-            box-shadow            : 0 0 5px rgba(0, 0, 0, 0.2);          
+            width                   : 35px;
+            height                  : 35px;
+            border-radius           : 50%;  
+            box-shadow              : 0 0 5px rgba(0, 0, 0, 0.2);          
       }
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -51,15 +50,15 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
      
       div.chatItem div.message a.username {
-            font-size             : 0.8em;
-            font-weight           : bold;
-            color                 : var(--color-primary);
-            text-decoration       : none;
+            font-size               : 0.8em;
+            font-weight             : bold;
+            color                   : var(--color-primary);
+            text-decoration         : none;
       }
 
       div.chatItem div.message span.time {
-            font-size             : 0.7em;
-            color                 : #CCC;
+            font-size               : 0.7em;
+            color                   : var(--color-text-secondary);
       }
 
       div.chatItem div.message {
@@ -72,13 +71,13 @@
             line-height             : 1.1em;
             padding                 : 10px 20px;
             border-radius           : 10px;
-            background              : #FFF;
+            background              : var(--color-bg);
       }
 
       div.chatItem div.message p {
             font-size               : 0.8em;
             line-height             : 1.2em;
-            color                   : #000;
+            color                   : var(--color-text);
             margin                  : 0;
             display                 : flex;
             width                   : 100%;

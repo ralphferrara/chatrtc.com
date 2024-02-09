@@ -6,11 +6,11 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { PANEL_USER_OPEN, PANEL_USER_CLOSE, PanelUserOpenAction, PanelUserCloseAction }                                             from '../types/panel.user.types';
+      import { PANEL_USER_OPEN, PANEL_USER_CLOSE, PanelUserOpenAction, PanelUserCloseAction, UserFilterBroadcasting }                                             from '../types/panel.user.types';
       import { USER_STATUS_ACTIVE, USER_STATUS_INACTIVE, USER_STATUS_AWAY, UserStatusActive, UserStatusInactive, UserStatusAway }         from '../types/panel.user.types';
       import { USER_SORT_ALPHA, USER_SORT_GENDER, USER_SORT_BROADCAST, USER_SORT_LEVEL, USER_SORT_DISTANCE, UserSortAlpha, UserSortGender, UserSortLevel, UserSortDistance, UserSortBroadcast }                        from '../types/panel.user.types';
-      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, UserFilterAll, UserFilterMods, UserFilterBlocked, UserFilterFriends, UserFilterViewers } from '../types/panel.user.types';
-      import { USER_SEARCH_TERM, USER_SEARCH_STATUS, UserSearchTerm, UserSearchStatus }                                                   from '../types/panel.user.types';
+      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, USER_FILTER_BROADCASTING, UserFilterAll, UserFilterMods, UserFilterBlocked, UserFilterFriends, UserFilterViewers } from '../types/panel.user.types';
+      import { USER_SEARCH_TERM, UserSearchTerm }                                                                                         from '../types/panel.user.types';
       import { SETTINGS_MODAL_OPEN, SETTINGS_MODAL_CLOSE, ModalSettingsOpenAction, ModalSettingsCloseAction }                             from '../types/panel.user.types';
       
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -70,16 +70,15 @@
       export const setUserFilterViewers  = (): UserFilterViewers => ({
             type: USER_FILTER_VIEWERS
       });
+      export const setUserFilterBroadcasting  = (): UserFilterBroadcasting => ({
+            type: USER_FILTER_BROADCASTING
+      });
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Action Creators - Search
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       export const setUserSearchTerm = (term: string): UserSearchTerm => ({
             type: USER_SEARCH_TERM,
             payload: term
-      });
-      export const setUserSearchStatus = (status: string): UserSearchStatus => ({
-            type: USER_SEARCH_STATUS,
-            payload: status
       });
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Action Creators - Modal Settings
