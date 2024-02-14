@@ -8,6 +8,7 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       export default interface User {
+            userId            : number;
             age               : number;
             age2?             : number;
             city              : string;
@@ -22,8 +23,7 @@
             profile           : string;
             profileLink       : string;
             state             : string;
-            status            : 'active' | 'idle' | 'away';
-            userId            : number;
+            status            : 'active' | 'idle' | 'away';            
             username          : string;
       }
       

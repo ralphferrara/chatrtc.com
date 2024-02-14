@@ -27,6 +27,7 @@
       import ToolbarChat                                    from '../../toolbars/chat/toolbar.chat';
       import ToolbarMenu                                    from '../../toolbars/menu/toolbar.menu';
       import ToolbarSearch                                  from '../../toolbars/search/toolbar.search';
+      import ToolbarBroadcast                               from '../../toolbars/dock/toolbar.dock';
       import UserList                                       from '../../users/list/user.list';
       import ChatList                                       from '../../chat/list/chat.list';
       import ChatListItem                                   from '../../chat/listitem/chat.listitem';
@@ -91,6 +92,7 @@
                         <Modal header="Settings" onClose={() => {closeModal("settings");} } isOpen={ isOpenModalSettings } className="settings"><ModalSettings /></Modal>
                         <Modal header="Upload" onClose={() => {closeModal("upload");} } isOpen={ isOpenModalUpload  } className="upload"><ModalUpload /></Modal>                        
                         <div className="main" onClick={ () => { dispatch(clearActiveMenu()); } }>
+                              <ToolbarBroadcast />
                               <div className="chatOverlay">
                                     <ChatList>
                                           <ChatNotice notice={{ message: "Welcome to the chat room"}} />

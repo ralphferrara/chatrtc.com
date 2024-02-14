@@ -23,10 +23,8 @@
       ): MenuIconState => {
             switch (action.type) {
                   case SET_ACTIVE_MENU_ICON : 
-                        console.log('Setting Open Menu');
                         return { ...state, activeMenu: action.payload };
                   case CLEAR_ACTIVE_MENU_ICON: 
-                        console.log('Clearing Active Menu');
                         return { ...state, activeMenu: null };
                   default: return state;
             }

@@ -1,0 +1,90 @@
+/*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+//|| ChatRTC :: Component CSS
+//|| CSS :: Video Broadcast
+//||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Wrapper
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
+
+      div.videoBroadcasting {
+            position                : relative;
+            top                     : 0;
+            left                    : 0;
+            width                   : calc((var(--height-toolbar-dock) - 20px) / 0.75);;
+            height                  : calc(var(--height-toolbar-dock) - 20px);
+            background              : black;
+      }
+
+      div.videoBroadcasting div.overlay {
+            position                : absolute;
+            display                 : none;
+            top                     : 0;
+            left                    : 0;
+            bottom                  : 0;
+            right                   : 0;
+            width                   : 100%;
+            height                  : 100%;
+            background              : rgba(0,0,0,0.7);
+            z-index                 : 200;
+            overflow                : hidden;
+      }
+
+      div.videoBroadcasting:hover div.overlay {
+            display                 : block;
+      }
+
+      div.videoBroadcasting button.close {
+            display                 : block;
+            position                : absolute;
+            top                     : 10px;
+            right                   : 10px;
+            background              : transparent;
+            border                  : 0;      
+            font-size               : 1.5em;
+            color                   : #FFF;
+            cursor                  : pointer;
+            z-index                 : 300;
+      }
+
+      div.videoBroadcasting:hover h2 {
+            display                 : block;
+            top                     : 10px;
+            left                    : 10px;
+            background              : transparent;
+            border                  : 0;      
+            font-size               : 3em;
+            color                   : #FFF;
+            margin-top              : 20px;
+            text-align              : center;
+            padding                 : 10px 0;
+            opacity                 : 0.4;
+      }
+
+      div.videoBroadcasting:hover div.overlay div {
+            display                 : table;
+            font-size               : 0.8em;
+            margin                  : 5px 5% 5px 2%;
+            padding                 : 3px;
+            width                   : 90%;
+      }
+
+      div.videoBroadcasting:hover div.overlay div span.icon {
+            display                 : table-cell;
+            width                   : 32px;
+            text-align              : center;      
+            color                   : #FFF;
+      }
+
+      div.videoBroadcasting div.overlay select {
+            display                 : table-cell;
+            font-size               : 0.9em;
+            padding                 : 3px;
+            width                   : 100%;
+      }
+
+      div.videoBroadcasting video {
+            width                   : 100%;
+            height                  : 100%;
+            z-index                 : 100;
+      }

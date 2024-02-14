@@ -25,9 +25,9 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Filters
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, USER_FILTER_BROADCASTING }     from '../../../../redux/types/panel.user.types';
-      import { setUserSearchTerm }                          from '../../../../redux/actions/panel.user.actions';
-      import { setUserFilterAll }                           from '../../../../redux/actions/panel.user.actions';
+      import { USER_FILTER_ALL, USER_FILTER_MODS, USER_FILTER_FRIENDS, USER_FILTER_BLOCKED, USER_FILTER_VIEWERS, USER_FILTER_BROADCASTING }     from '../../../../redux/types/users.types';
+      import { setUserSearchTerm }                          from '../../../../redux/actions/users.actions';
+      import { setUserFilterAll }                           from '../../../../redux/actions/users.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -46,8 +46,8 @@
             const dispatch                      = useAppDispatch();
             const { users, loading, error }     = useAppSelector((state) => state.users);
             const activeMenu                    = useAppSelector((state) => state.menuIcon.activeMenu);
-            const userFilter                    = useAppSelector((state) => state.panelUser.filter);            
-            const searchTerm                    = useAppSelector((state) => state.panelUser.searchTerm);
+            const userFilter                    = useAppSelector((state) => state.users.filterBy);            
+            const searchTerm                    = useAppSelector((state) => state.users.searchTerm);
             const me                            = useAppSelector((state) => state.me);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
@@ -104,15 +104,18 @@
                   dispatch(setUserSearchTerm(''));
                   dispatch(setUserFilterAll());
             };
+            var userClasses   = ["userList"];
+            if (menuIconOpen)             userClasses.push('menuOpen');
+            if (filteredHeader !== null)  userClasses.push('filtering');
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return            
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
                   <div 
-                        className={`userList ${menuIconOpen ? 'blur-div' : ''}`}
+                        className={ userClasses.join(" ") }
                         onClick={ () => { dispatch(clearActiveMenu()); } } 
                   >
-                        { (filteredHeader !== null) ? <h2 className="filterHeader">Filtering by <b>{filteredHeader}</b><span><FontAwesomeIcon onClick={ clearAllFilters } icon={faTimes} /></span></h2> : '' }
+                        { (filteredHeader !== null) ? <h2 className="filterHeader">Filtering by <b>{filteredHeader}</b><span onClick={ clearAllFilters } ><FontAwesomeIcon icon={faTimes} /></span></h2> : '' }
                         {(filteredUsers.length > 0) ? filteredUsers.map(user => <UserListItem key={user.userId} user={user} />) : <div className="empty" onClick={ clearAllFilters }><span><FontAwesomeIcon icon={faTimes} /></span> No results found</div>}
                   </div>
             );

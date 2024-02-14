@@ -20,6 +20,8 @@
             dmsActive         : boolean;
             gender            : string;
             isBroadcasting    : boolean;
+            cameraOn          : boolean;
+            microphoneOn      : boolean;
             latitude          : number;
             level             : number;
             longitude         : number;

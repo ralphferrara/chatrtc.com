@@ -104,6 +104,10 @@
             border-left             : 1px solid var(--color-border-light);
       }
 
+      div.toolbarSendText textarea:placeholder-shown {
+            overflow               : hidden;    
+      }      
+
       div.toolbarSendText textarea::-webkit-input-placeholder {
             color                   : var(--color-text-light);
             padding                 : 20px 0;

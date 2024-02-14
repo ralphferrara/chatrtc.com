@@ -9,29 +9,48 @@
             
       div.userList {
             padding           : 0;
-            height            : calc(100% - var(--height-toolbar));
+            height            : calc(100% - var(--height-search));
             display           : flex;
             flex-direction    : column;            
             overflow-x        : hidden;
       }
 
-      div.userList h2.filterHeader {
-            padding           : 10px 20px;
-            background        : var(--color-bg-highlight);
-            margin            : 0 0 10px 0;
-            position          : relative;
-            font-size         : 0.8em;
+      div.userList.filtering {
+            padding           : 0;
+            padding-top       : calc(var(--height-search) - 10px);
+            height            : calc(100% - var(--height-search));
       }
+
+      div.userList h2.filterHeader {
+            position          : fixed;
+            top               : var(--height-search);
+            padding           : 20px 20px;
+            background        : var(--color-bg-highlight);
+            margin            : 0 0 0 0;
+            font-size         : 0.8em;
+            width             : var(--width-users);
+      }
+
       div.userList h2.filterHeader b {
             font-weight       : bold;
             color             : var(--color-text);
       }
+
       div.userList h2.filterHeader span {
             position          : absolute;
-            right             : 10px;
-            top               : 10px;;
+            right             : 20px;
+            top               : 2px;
+            padding           : 15px 20px;
             font-size         : 1.2em;
             cursor            : pointer;
+      }
+
+      main.closed div.userList { 
+            padding           : 0;
+      }
+
+      main.closed div.userList h2.filterHeader {
+            display           : none;
       }
 
       main.closed div.userList {

@@ -32,12 +32,23 @@
       button.icon.active {      
             background              : var(--color-active-bg);
             color                   : var(--color-active-text);
+            opacity                 : 0.6;   
       }
 
       button.icon.inactive {      
             background              : var(--color-bg-inactive);
             color                   : var(--color-text-inactive);
       }
+
+      button.icon.active {
+            background              : var(--color-bg-hover);
+            color                   : var(--color-text-hover);
+      }
+      
+      button.icon.active:hover  {
+            opacity                 : 1;   
+      }
+
 
       button.icon.short {      
             background              : transparent;

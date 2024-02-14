@@ -1,6 +1,6 @@
 /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
 //|| ChatRTC :: Component
-//|| TSX :: Icon Menu
+//|| TSX :: List Menu
 //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
@@ -20,30 +20,31 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import './menu.icon.css';
+      import './menu.list.css';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| MenuIconItem
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export interface MenuIconItem { 
+      export interface MenuListItem { 
             title                   : string;
-            icon                    : IconDefinition;
-            value                   : string;
-            event                   : Function;
+            icon?                   : IconDefinition;
+            avatar?                 : string;
+            value?                  : string;
+            event?                  : Function;
             className?              : string;
       }
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Props
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      interface MenuIconProps {
+      interface MenuListProps {
             target                  : string;
-            items                   : MenuIconItem[];
-            callback                : Function;
-            forceClose              : boolean;
+            items                   : MenuListItem[];
+            callback?               : Function;
+            forceClose?             : boolean;
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const MenuIcon: React.FC<MenuIconProps> = ({ target, items, callback, forceClose }) => {
+      const MenuList: React.FC<MenuListProps> = ({ target, items, callback, forceClose }) => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Menu State and Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -86,7 +87,7 @@
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| ClickAction
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const MenuIconClickAction = (item:MenuIconItem) => {
+            const MenuListClickAction = (item:MenuListItem) => {
                   const clickedElements = document.querySelectorAll('.clicked');
                   clickedElements.forEach((element) => {
                         element.classList.remove('clicked');
@@ -100,8 +101,8 @@
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="menuIconMenu" style={{ 
-                              display : isActiveMenu ,
+                  <div className="menuListMenu" style={{ 
+                              display : "block",
                               left    : menuPosition.left,
                               bottom  : menuPosition.bottom,
                               width   : menuPosition.width,
@@ -109,18 +110,18 @@
                         }}>
                         {items.map((item, index) => {
                               return (
-                                    <div className="menuIconWrap" key={index}>
+                                    <div className="menuListWrap" key={index}>
                                           <button 
                                                 style={{
                                                       width   : menuPosition.width,
                                                       height  : menuPosition.height,                                          
                                                 }}  
-                                                className={`menuButtonIcon${(item.className) ? " " + item.className : ""}`}
+                                                className={`menuListItem${(item.className) ? " " + item.className : ""}`}
                                                 key={index} 
-                                                onClick={ () => { MenuIconClickAction(item); } } 
+                                                onClick={ () => { MenuListClickAction(item); } } 
                                                 title={item.title}
                                           >
-                                                <FontAwesomeIcon icon={item.icon} />
+                        { (item.icon) ? <FontAwesomeIcon icon={item.icon} /> : (item.avatar) ? <img src={item.avatar} alt={item.title} /> : null }
                                                 <span>{item.title}</span>
                                           </button>
                                           
@@ -134,4 +135,4 @@
       //|| Export
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             
-      export default MenuIcon;
+      export default MenuList;

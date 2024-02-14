@@ -6,7 +6,7 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, { useState }                            from 'react';
+      import React                                          from 'react';
       import ButtonIcon                                     from '../../buttons/icon/button.icon';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
@@ -17,8 +17,13 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
-      import { useAppDispatch }                             from '../../../../redux/store';
+      import { useAppDispatch,useAppSelector }              from '../../../../redux/store';
       import { openModalUpload }                            from '../../../../redux/actions/modal.actions';
+      import { setSendType }                                from '../../../../redux/actions/send.actions';
+      /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+      //|| Custom Component
+      //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+      import MenuList, { MenuListItem }                     from '../../menus/list/menu.list';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
@@ -31,24 +36,39 @@
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| States
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const [directState, setDirect] = useState(0);
+            const sendType          = useAppSelector((state) => state.send.type);
+            const sendUsername      = useAppSelector((state) => state.send.toUsername);
+            const sendHistory       = useAppSelector((state) => state.send.history);
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Sort By Items
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const miDirectList: MenuListItem[] = sendHistory.map((user) => ({
+                  title: user.username,
+                  avatar: user.profile,
+            }));
+            const miWhisperList: MenuListItem[] = sendHistory.map((user) => ({
+                  title: user.username,
+                  avatar: user.profile,
+            }));
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Dispatch
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const dispatch    = useAppDispatch();                   
+            const dispatch          = useAppDispatch();                   
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return(
-                  <div className={`toolbarSendBox ${directState === 0 ? '' : directState === 1 ? 'direct' : 'whisper'}`}>
-                        <div className="sendTo direct"><i><FontAwesomeIcon icon={ faCircleArrowRight } /></i><span>Directing Message to <b>John Doe</b></span><button className="close"  onClick={() => { setDirect(0); }}><FontAwesomeIcon icon={faXmark} /></button></div>
-                        <div className="sendTo whisper"><i><FontAwesomeIcon icon={ faUserSecret } /></i><span>Whispering to <b>John Doe</b></span><button className="close" onClick={() => { setDirect(0); }}><FontAwesomeIcon icon={faXmark} /></button></div>
+                  <div className={`toolbarSendBox ${sendType}`}>
+                        <MenuList target="biDirect"   items={ miDirectList }  />
+                        <MenuList target="biWhisper"  items={ miWhisperList }  />
+                        <div id="sendDirect" className="sendTo direct"><i><FontAwesomeIcon icon={ faCircleArrowRight } /></i><span>Directing Message to <b>{sendUsername}</b></span><button className="close"  onClick={() => { setSendType("broadcast"); }}><FontAwesomeIcon icon={faXmark} /></button></div>
+                        <div id="sendWhisper" className="sendTo whisper"><i><FontAwesomeIcon icon={ faUserSecret } /></i><span>Whispering to <b>{sendUsername}</b></span><button className="close" onClick={() => { dispatch( setSendType("broadcast") ); }}><FontAwesomeIcon icon={faXmark} /></button></div>
                         <div className="toolbarSendText">                              
-                              <ButtonIcon className={`icon ${(directState !== 1) ? '' : 'active'}`} title="Directed Message" icon={faCircleArrowRight} onClick={() => setDirect((directState === 1) ? 0 : 1) } />
-                              <ButtonIcon className={`icon ${(directState !== 2) ? '' : 'active'}`} title="Whisper Message" icon={faUserSecret} onClick={() => setDirect((directState === 2) ? 0 : 2) } />
+                              <ButtonIcon id="biDirect" className={(sendType !== "direct") ? '' : 'active'} title="Directed Message" icon={faCircleArrowRight}  />
+                              <ButtonIcon id="biWhisper" className={(sendType !== "whisper") ? '' : 'active'} title="Whisper Message" icon={faUserSecret} />
                               <textarea id="sendText" placeholder="Enter a message"></textarea> 
-                              <ButtonIcon className={`icon`} icon={faPhotoFilm}           title="Upload Media" onClick={() => { dispatch(openModalUpload()) } } /> 
-                              <ButtonIcon className={`icon`} icon={faChevronRight}        title="Send" onClick={() => {alert('Sent!')} } />
+                              <ButtonIcon icon={faPhotoFilm}           title="Upload Media" onClick={() => { dispatch(openModalUpload()) } } /> 
+                              <ButtonIcon icon={faChevronRight}        title="Send" onClick={() => {alert('Sent!')} } />
                         </div>
                   </div>            
             );

@@ -5,42 +5,25 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
-      import  Me  from "../../app/interfaces/me";
-      import {  MeActionTypes, UPDATE_ME } from '../types/me.types';
+      import Send                                     from "../../app/interfaces/send";
+      import {  SendActionTypes, UPDATE_SEND }        from '../types/send.types';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Initial State
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
-      export const initialState: Me = {
-            token             : "",
-            friends           : [],            
-            blocked           : [],        
-            viewers           : [],
-            age               : 0,
-            age2              : 0,
-            city              : "",
-            certified         : false,
-            distance          : 0,
-            dmsActive         : false,
-            gender            : "M",
-            isBroadcasting    : false,
-            cameraOn          : false,
-            microphoneOn      : false,
-            latitude          : 0,
-            level             : 0,
-            longitude         : 0,
-            profile           : "",
-            profileLink       : "",
-            state             : "",
-            status            : "idle",
-            userId            : 0,
-            username          : ""
+      export const initialState: Send = {
+            message           : "",
+            toUser            : null,
+            toUsername        : null,
+            type              : "broadcast",
+            media             : [],   
+            history           : []
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Reducer
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
-      export function MeReducer(state = initialState, action: MeActionTypes): Me {
+      export function SendReducer(state = initialState, action: SendActionTypes): Send {
             switch (action.type) {
-                  case UPDATE_ME          : return { ...state, ...action.payload, };
+                  case UPDATE_SEND        : return { ...state, ...action.payload, };
                   default                 : return state;
             }
       }

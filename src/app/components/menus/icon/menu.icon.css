@@ -57,6 +57,14 @@
             transition        : background-color 0.3s ease;            
       }
 
+      div.menuIconWrap button.menuButtonIcon.active {
+            background        : var(--color-bg-hover);
+            color             : var(--color-text-hover);
+      }
+
+      div.menuIconWrap button.menuButtonIcon.active span {
+            color             : var(--color-text-hover);
+      }
 
       div.menuIconWrap button.menuButtonIcon:hover span {
             color             : var(--color-text-hover);

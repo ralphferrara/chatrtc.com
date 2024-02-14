@@ -18,6 +18,7 @@
       import { ModalReducer }                                     from '../redux/reducers/modal.reducer';
       import { UsersReducer }                                     from '../redux/reducers/users.reducer';
       import { MeReducer }                                        from '../redux/reducers/me.reducer';
+      import { SendReducer }                                      from '../redux/reducers/send.reducer';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/      
@@ -28,6 +29,7 @@
             "modals"              : ModalReducer,
             "users"               : UsersReducer, 
             "me"                  : MeReducer, 
+            "send"                : SendReducer, 
       });
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Root Reducer
