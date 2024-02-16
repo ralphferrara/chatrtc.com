@@ -6,12 +6,12 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import React, { useState } from 'react';
+      import React, { useState, useEffect }                 from 'react';
       import { useAppDispatch, useAppSelector }             from '../../../../redux/store';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Custom Components
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import ButtonIcon                                                 from '../../buttons/icon/button.icon';
+      import ButtonIcon                                     from '../../buttons/icon/button.icon';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -22,7 +22,8 @@
       import { FontAwesomeIcon }                                        from '@fortawesome/react-fontawesome';
       import { faCertificate, faUser, faVideo, faCircle }               from '@fortawesome/free-solid-svg-icons';
       import { faMoon, faHourglassHalf }                                from '@fortawesome/free-solid-svg-icons';
-      import { faCircleArrowRight, faUserSecret, faEnvelope, faUserTimes, faUserCircle, faFlag }                                from '@fortawesome/free-solid-svg-icons';
+      import { faCircleArrowRight, faUserSecret, faEnvelope}            from '@fortawesome/free-solid-svg-icons';
+      import { faUserTimes, faUserCircle, faFlag }                      from '@fortawesome/free-solid-svg-icons';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Redux User Filter
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -97,8 +98,7 @@
                         </div>
                         <div className="userButtons">
                               {user.isBroadcasting && <button className="viewCamera"><FontAwesomeIcon title="View Webcam" icon={ faVideo } /></button>}
-                              {!user.isBroadcasting && <button onClick={ handleExpanded }></button>}
-                              
+                              {!user.isBroadcasting && <button onClick={ handleExpanded }></button>}                              
                         </div>
                         <div className="userActions">
                               <ButtonIcon className="short" icon={faCircleArrowRight} title="Direct" onClick={ handleSendUser("direct", user) } />

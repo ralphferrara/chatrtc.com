@@ -11,7 +11,7 @@
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { useAppDispatch, useAppSelector }          from '../../../../redux/store';
-      import { clearActiveMenu, setActiveMenu }          from '../../../../redux/actions/menu.icon.actions';
+      import { clearActiveMenu, setActiveMenu }          from '../../../../redux/actions/menu.active.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -38,25 +38,25 @@
             target                  : string;
             items                   : MenuIconItem[];
             callback                : Function;
-            forceClose              : boolean;
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const MenuIcon: React.FC<MenuIconProps> = ({ target, items, callback, forceClose }) => {
+      const MenuIcon: React.FC<MenuIconProps> = ({ target, items, callback }) => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Menu State and Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const [menuPosition, setMenuPosition]     = useState<{ display?:string; left?: number, width?:number, bottom?:number, height?:number, totalH?:number, isOpen?:boolean }>({});
+            const [menuPosition, setMenuPosition]     = useState<{ left?: number, width?:number, bottom?:number, height?:number, totalH?:number }>({});
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Active Menu
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/            
-            const activeMenu       = useAppSelector((state) => state.menuIcon.activeMenu);      
+            const activeMenu       = useAppSelector((state) => state.menu.activeMenu);      
             const dispatch         = useAppDispatch();
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Set Menu Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const setMenuPositionFunction = useCallback(() => {
+            const ToggleMenu = () => {
+                  console.log("Icon Toggle: " + activeMenu + '->' + target);
                   if (activeMenu === target) return dispatch(clearActiveMenu()); else dispatch(setActiveMenu(target));
                   const targetElement = document.getElementById(target);
                   if (targetElement) {
@@ -67,22 +67,19 @@
                               width    : rect.width - 2,
                               height   : rect.height,
                               totalH   : rect.height * items.length,
-                              isOpen   : true
                         });
                   };
-            }, [target, activeMenu, dispatch, items]);
+            };
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Add Target Action
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            ||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             useEffect(() => {
-                  const targetElement = document.getElementById(target);                  
+                  const targetElement = document.getElementById(target);
                   if (targetElement) {
-                        targetElement.addEventListener('click', setMenuPositionFunction);                        
+                      targetElement.addEventListener('click', ToggleMenu);
+                      return () => { targetElement.removeEventListener('click', ToggleMenu); };
                   }
-                  return () => {
-                        if (targetElement) targetElement.removeEventListener('click', setMenuPositionFunction);
-                  };
-            }, [target, setMenuPositionFunction]);
+              }, [ToggleMenu, target]);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| ClickAction
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -94,14 +91,11 @@
                   dispatch(clearActiveMenu());                  
                   if (typeof(item.event) === 'function') item.event();                  
             };
-            if (forceClose) dispatch(clearActiveMenu());
-            const isActiveMenu = (target === activeMenu) ? "grid" : "none";
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="menuIconMenu" style={{ 
-                              display : isActiveMenu ,
+                  (target !== activeMenu) ? null : <div className="menuIconMenu" style={{ 
                               left    : menuPosition.left,
                               bottom  : menuPosition.bottom,
                               width   : menuPosition.width,
@@ -113,9 +107,9 @@
                                           <button 
                                                 style={{
                                                       width   : menuPosition.width,
-                                                      height  : menuPosition.height,                                          
+                                                      height  : menuPosition.height
                                                 }}  
-                                                className={`menuButtonIcon${(item.className) ? " " + item.className : ""}`}
+                                                className="menuButtonIcon" 
                                                 key={index} 
                                                 onClick={ () => { MenuIconClickAction(item); } } 
                                                 title={item.title}

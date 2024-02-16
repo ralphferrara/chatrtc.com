@@ -11,7 +11,7 @@
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { useAppDispatch, useAppSelector }             from '../../../../redux/store';
-      import { clearActiveMenu }                            from '../../../../redux/actions/menu.icon.actions';      
+      import { clearActiveMenu }                            from '../../../../redux/actions/menu.active.actions';      
       import { fetchUsers }                                 from '../../../../redux/actions/users.actions';      
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Icons
@@ -45,7 +45,7 @@
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             const dispatch                      = useAppDispatch();
             const { users, loading, error }     = useAppSelector((state) => state.users);
-            const activeMenu                    = useAppSelector((state) => state.menuIcon.activeMenu);
+            const activeMenu                    = useAppSelector((state) => state.menu.activeMenu);
             const userFilter                    = useAppSelector((state) => state.users.filterBy);            
             const searchTerm                    = useAppSelector((state) => state.users.searchTerm);
             const me                            = useAppSelector((state) => state.me);

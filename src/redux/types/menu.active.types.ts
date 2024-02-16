@@ -6,24 +6,24 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Types
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const SET_ACTIVE_MENU_ICON   = 'SET_ACTIVE_MENU_ICON';
-      export const CLEAR_ACTIVE_MENU_ICON = 'CLEAR_ACTIVE_MENU_ICON';      
+      export const SET_ACTIVE_MENU   = 'SET_ACTIVE_MENU';
+      export const CLEAR_ACTIVE_MENU = 'CLEAR_ACTIVE_MENU';      
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Actions
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export interface SetActiveMenuIconAction {
-            type        : typeof SET_ACTIVE_MENU_ICON;
+      export interface SetActiveMenuAction {
+            type        : typeof SET_ACTIVE_MENU;
             payload     : string;
       }
         
-      export interface ClearActiveMenuIconAction {
-            type        : typeof CLEAR_ACTIVE_MENU_ICON;
+      export interface ClearActiveMenuAction {
+            type        : typeof CLEAR_ACTIVE_MENU;
       }        
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Type
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export type       MenuIconActionTypes = SetActiveMenuIconAction | ClearActiveMenuIconAction;        
+      export type       MenuActionTypes = SetActiveMenuAction | ClearActiveMenuAction;        
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| State
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export interface  MenuIconState { activeMenu: string | null; }      
+      export interface  MenuState { activeMenu: string | null; }      

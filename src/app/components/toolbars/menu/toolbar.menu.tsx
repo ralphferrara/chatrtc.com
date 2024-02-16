@@ -31,6 +31,7 @@
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { useAppDispatch, useAppSelector }             from '../../../../redux/store';
+      import { clearActiveMenu }                            from '../../../../redux/actions/menu.active.actions';      
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -145,15 +146,22 @@
                   case USER_FILTER_BROADCASTING : userFilter = { 'icon' : faTv,           'class'     : 'broadcasting' };     break;
             }   
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| Close
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const closeUserPanel = () => {
+                  dispatch(clearActiveMenu());
+                  dispatch(closePanelUsers());
+            }
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return(
                   <div className="toolbarMenuWrapper">
-                        <MenuIcon target="biStatus"     items={ miStatus }     forceClose={!panelUserIsOpen} callback={() => {} } />
-                        <MenuIcon target="biSort"       items={ miSort }       forceClose={!panelUserIsOpen} callback={() => {} } />                        
-                        <MenuIcon target="biBroadcast"  items={ miBroadcast }  forceClose={!panelUserIsOpen} callback={() => {} } />                        
-                        <MenuIcon target="biFilter"     items={ miFilter }     forceClose={!panelUserIsOpen} callback={() => {} } />                        
-                        <MenuIcon target="biMenu"       items={ miMenu }       forceClose={!panelUserIsOpen} callback={() => {} } />                        
+                        <MenuIcon target="biStatus"     items={ miStatus }     callback={() => {} } />
+                        <MenuIcon target="biSort"       items={ miSort }       callback={() => {} } />                        
+                        <MenuIcon target="biBroadcast"  items={ miBroadcast }  callback={() => {} } />                        
+                        <MenuIcon target="biFilter"     items={ miFilter }     callback={() => {} } />                        
+                        <MenuIcon target="biMenu"       items={ miMenu }       callback={() => {} } />                        
                         <div className="toolbarMenu">                              
                               <ButtonIcon id=""               className={`icon toggle` } icon={faArrowsLeftRight} title="Open"    onClick={() => { dispatch(openPanellUsers()); } } />                  
                               <ButtonIcon id="biMenu"         className={`icon`} icon={faBars}           title="Menu"           />
@@ -161,7 +169,7 @@
                               <ButtonIcon id="biSort"         className={`icon`} icon={userSort.icon}    title="Sort By"        />
                               <ButtonIcon id="biBroadcast"    className={`icon { ${isBroadcasting ? "active" : ""}`} icon={(isBroadcasting ? faVideo : faVideoSlash)}     title="Broadcast"      />
                               <ButtonIcon id="biFilter"       className={`icon`} icon={userFilter.icon}  title="Filter Users"   />
-                              <ButtonIcon id=""               className={`icon`} icon={faTimes}                  title="Close"    onClick={() => { dispatch(closePanelUsers()) } } />
+                              <ButtonIcon id="biCloseUsers"   className={`icon`} icon={faTimes}          title="Close"    onClick={() => { closeUserPanel(); } } />
                         </div>
                   </div>
             );

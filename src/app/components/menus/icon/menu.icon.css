@@ -8,7 +8,7 @@
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
 
       div.menuIconMenu { 
-            display           : none;
+            display           : grid;
             position          : fixed; 
             background        : var(--color-bg); 
             padding           : 0; 

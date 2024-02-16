@@ -13,7 +13,7 @@
       import { useAppSelector }                             from '../../../../redux/store';
       import { useAppDispatch }                             from '../../../../redux/store';
       import { closeModalSettings, closeModalUpload }       from '../../../../redux/actions/modal.actions';
-      import { clearActiveMenu }                            from '../../../../redux/actions/menu.icon.actions';      
+      import { clearActiveMenu }                            from '../../../../redux/actions/menu.active.actions';      
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Interface
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -91,9 +91,9 @@
                   <main className={`${(panelUserIsOpen) ? 'open' : 'closed'}`}>
                         <Modal header="Settings" onClose={() => {closeModal("settings");} } isOpen={ isOpenModalSettings } className="settings"><ModalSettings /></Modal>
                         <Modal header="Upload" onClose={() => {closeModal("upload");} } isOpen={ isOpenModalUpload  } className="upload"><ModalUpload /></Modal>                        
-                        <div className="main" onClick={ () => { dispatch(clearActiveMenu()); } }>
+                        <div className="main">
                               <ToolbarBroadcast />
-                              <div className="chatOverlay">
+                              <div className="chatOverlay" onClick={ () => { console.log("CLICK ON MAIN"); dispatch(clearActiveMenu()); } }>
                                     <ChatList>
                                           <ChatNotice notice={{ message: "Welcome to the chat room"}} />
                                           <ChatListItem message={ myMessages[0] }/>

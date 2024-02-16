@@ -11,12 +11,12 @@
       //|| Redux
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { useAppDispatch, useAppSelector }          from '../../../../redux/store';
-      import { clearActiveMenu, setActiveMenu }          from '../../../../redux/actions/menu.icon.actions';
+      import { clearActiveMenu, setActiveMenu }          from '../../../../redux/actions/menu.active.actions';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { FontAwesomeIcon }             from '@fortawesome/react-fontawesome';
-      import { IconDefinition }              from '@fortawesome/fontawesome-svg-core';
+      import { FontAwesomeIcon }                         from '@fortawesome/react-fontawesome';
+      import { IconDefinition }                          from '@fortawesome/fontawesome-svg-core';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| CSS
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
@@ -38,93 +38,85 @@
       interface MenuListProps {
             target                  : string;
             items                   : MenuListItem[];
-            callback?               : Function;
-            forceClose?             : boolean;
+            onOpen?                 : Function;
+            onClose?                : Function;
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import Main
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      const MenuList: React.FC<MenuListProps> = ({ target, items, callback, forceClose }) => {
+      const MenuList: React.FC<MenuListProps> = ({ target, items, onOpen, onClose }) => {
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Menu State and Position
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const [menuPosition, setMenuPosition]     = useState<{ display?:string; left?: number, width?:number, bottom?:number, height?:number, totalH?:number, isOpen?:boolean }>({});
+            const [menuPosition, setMenuPosition]     = useState<{ left?: number, bottom?:number }>({});
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Active Menu
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/            
-            const activeMenu       = useAppSelector((state) => state.menuIcon.activeMenu);      
+            const activeMenu       = useAppSelector((state) => state.menu.activeMenu);      
             const dispatch         = useAppDispatch();
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| Set Menu Position
+            //|| MenuListClickAction
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const setMenuPositionFunction = useCallback(() => {
-                  if (activeMenu === target) return dispatch(clearActiveMenu()); else dispatch(setActiveMenu(target));
+            const MenuListClickAction = (item:MenuListItem, target:string) => {
+                  if (item.event) item.event();
+                  dispatch(clearActiveMenu());
+            };
+            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+            //|| MenuListToggleMenu
+            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
+            const ToggleMenu = useCallback(() => {                  
+                  /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
+                  //|| MenuListToggleMenu
+                  //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
                   const targetElement = document.getElementById(target);
                   if (targetElement) {
                         const rect                = targetElement.getBoundingClientRect();
                         setMenuPosition({ 
                               left     : rect.left,
-                              bottom   : (window.innerHeight - rect.top + 5),
-                              width    : rect.width - 2,
-                              height   : rect.height,
-                              totalH   : rect.height * items.length,
-                              isOpen   : true
+                              bottom   : (window.innerHeight - rect.top)
                         });
                   };
-            }, [target, activeMenu, dispatch, items]);
+                  console.log("Toggle Menu : " + activeMenu + '->' + target);
+                  if (activeMenu === target) { 
+                        if (onClose) onClose();
+                        console.log("Clearing Active Menu: " + target);
+                        return dispatch(clearActiveMenu()); 
+                  } else {
+                        if (onOpen) onOpen();
+                        console.log("Setting Active Menu: " + target);
+                        dispatch(setActiveMenu(target));
+                  }
+            }, [dispatch, activeMenu, target, onClose, onOpen]);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Add Target Action
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             useEffect(() => {
-                  const targetElement = document.getElementById(target);                  
+                  const targetElement = document.getElementById(target);
                   if (targetElement) {
-                        targetElement.addEventListener('click', setMenuPositionFunction);                        
+                      targetElement.addEventListener('click', ToggleMenu);
+                      return () => { targetElement.removeEventListener('click', ToggleMenu); };
                   }
-                  return () => {
-                        if (targetElement) targetElement.removeEventListener('click', setMenuPositionFunction);
-                  };
-            }, [target, setMenuPositionFunction]);
-            /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
-            //|| ClickAction
-            //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-            const MenuListClickAction = (item:MenuListItem) => {
-                  const clickedElements = document.querySelectorAll('.clicked');
-                  clickedElements.forEach((element) => {
-                        element.classList.remove('clicked');
-                  });
-                  dispatch(clearActiveMenu());                  
-                  if (typeof(item.event) === 'function') item.event();                  
-            };
-            if (forceClose) dispatch(clearActiveMenu());
-            const isActiveMenu = (target === activeMenu) ? "grid" : "none";
+              }, [ToggleMenu, target]);
             /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
             //|| Return
             //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
             return (
-                  <div className="menuListMenu" style={{ 
-                              display : "block",
-                              left    : menuPosition.left,
-                              bottom  : menuPosition.bottom,
-                              width   : menuPosition.width,
-                              height  : menuPosition.totalH 
-                        }}>
+                  (activeMenu !== target) ? null : <div className="menuListMenu" style={{ 
+                        left    : menuPosition.left,
+                        bottom  : menuPosition.bottom
+                  }}>
                         {items.map((item, index) => {
                               return (
-                                    <div className="menuListWrap" key={index}>
+                                    <div className="menuListItemWrap" key={index}>
                                           <button 
-                                                style={{
-                                                      width   : menuPosition.width,
-                                                      height  : menuPosition.height,                                          
-                                                }}  
                                                 className={`menuListItem${(item.className) ? " " + item.className : ""}`}
                                                 key={index} 
-                                                onClick={ () => { MenuListClickAction(item); } } 
+                                                onClick={ () => { return MenuListClickAction(item, target); } } 
                                                 title={item.title}
                                           >
-                        { (item.icon) ? <FontAwesomeIcon icon={item.icon} /> : (item.avatar) ? <img src={item.avatar} alt={item.title} /> : null }
+                                                { (item.icon) ? <FontAwesomeIcon icon={item.icon} /> : (item.avatar) ? <img src={item.avatar} alt={item.title} /> : null }
                                                 <span>{item.title}</span>
-                                          </button>
-                                          
+                                          </button>                                          
                                     </div>
                               );
                         })}

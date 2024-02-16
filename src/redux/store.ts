@@ -13,7 +13,7 @@
       //|| Reducers
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
       import { PanelUserReducer }                                 from '../redux/reducers/panel.user.reducer';
-      import { MenuIconReducer }                                  from '../redux/reducers/menu.icon.reducer';
+      import { MenuReducer }                                      from './reducers/menu.active.reducer';
       import { SettingsReducer }                                  from '../redux/reducers/settings.reducer';
       import { ModalReducer }                                     from '../redux/reducers/modal.reducer';
       import { UsersReducer }                                     from '../redux/reducers/users.reducer';
@@ -25,7 +25,7 @@
       const rootReducer = combineReducers({
             "panelUser"           : PanelUserReducer,
             "settings"            : SettingsReducer,
-            "menuIcon"            : MenuIconReducer,  
+            "menu"                : MenuReducer,  
             "modals"              : ModalReducer,
             "users"               : UsersReducer, 
             "me"                  : MeReducer, 

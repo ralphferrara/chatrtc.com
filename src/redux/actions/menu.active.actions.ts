@@ -6,15 +6,15 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { SET_ACTIVE_MENU_ICON, CLEAR_ACTIVE_MENU_ICON, SetActiveMenuIconAction, ClearActiveMenuIconAction } from '../types/menu.icon.types';
+      import { SET_ACTIVE_MENU, CLEAR_ACTIVE_MENU, SetActiveMenuAction, ClearActiveMenuAction } from '../types/menu.active.types';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Action Creators
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const setActiveMenu = (menuId: string): SetActiveMenuIconAction => ({
-            type: SET_ACTIVE_MENU_ICON,
+      export const setActiveMenu = (menuId: string): SetActiveMenuAction => ({
+            type: SET_ACTIVE_MENU,
             payload: menuId,
       });
 
-      export const clearActiveMenu = (): ClearActiveMenuIconAction => ({
-            type: CLEAR_ACTIVE_MENU_ICON,
+      export const clearActiveMenu = (): ClearActiveMenuAction => ({
+            type: CLEAR_ACTIVE_MENU,
       });

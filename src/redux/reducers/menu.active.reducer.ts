@@ -6,25 +6,26 @@
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Import
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      import { MenuIconState, MenuIconActionTypes }                             from '../types/menu.icon.types';    
-      import { SET_ACTIVE_MENU_ICON, CLEAR_ACTIVE_MENU_ICON }                   from '../types/menu.icon.types';
+      import { MenuState, MenuActionTypes }                                     from '../types/menu.active.types';    
+      import { SET_ACTIVE_MENU, CLEAR_ACTIVE_MENU }                   from '../types/menu.active.types';
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Initial State
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const MenuIconInitialState: MenuIconState = {
+      export const MenuInitialState: MenuState = {
             activeMenu: null,
       };
       /*||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||
       //|| Reducer
       //||=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-||*/
-      export const MenuIconReducer = (
-            state = MenuIconInitialState,
-            action: MenuIconActionTypes
-      ): MenuIconState => {
+      export const MenuReducer = (
+            state = MenuInitialState,
+            action: MenuActionTypes
+      ): MenuState => {
             switch (action.type) {
-                  case SET_ACTIVE_MENU_ICON : 
+                  case SET_ACTIVE_MENU : 
                         return { ...state, activeMenu: action.payload };
-                  case CLEAR_ACTIVE_MENU_ICON: 
+                  case CLEAR_ACTIVE_MENU: 
+                        console.log("Clearing Active Menu");
                         return { ...state, activeMenu: null };
                   default: return state;
             }
